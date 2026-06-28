@@ -158,13 +158,16 @@ h3 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; letter-spac
   box-shadow: 0 8px 30px -20px rgba(20,55,40,.5);
 }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 24px; }
-.brand { display: flex; align-items: center; gap: 11px; font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--ink); }
-.brand-mark {
-  width: 38px; height: 38px; display: grid; place-items: center;
-  border-radius: 11px; font-size: 1.15rem; color: #fff; font-family: var(--serif);
-  background: url("../img/marble-green.svg") center/cover, linear-gradient(135deg, var(--accent-soft), var(--accent-deep));
-  box-shadow: 0 8px 18px -8px rgba(18,85,60,.7); border: 1px solid rgba(255,255,255,.4);
+.brand { display: flex; align-items: center; gap: 9px; }
+.brand-word {
+  display: flex; flex-direction: column; line-height: .84;
+  font-family: "Baloo 2", var(--sans); font-weight: 700; font-size: 1.55rem; letter-spacing: .005em;
 }
+.w-easy { color: #1b3e6f; }
+.w-tax  { color: #7cb518; margin-top: -1px; }
+.brand-runner { height: 46px; width: auto; display: block; }
+.brand--footer .brand-word { font-size: 1.85rem; }
+.brand--footer .brand-runner { height: 56px; }
 .nav { display: flex; gap: 34px; }
 .nav a { font-size: .94rem; color: var(--ink-soft); font-weight: 500; position: relative; transition: color .3s; }
 .nav a::after { content:""; position:absolute; left:0; bottom:-6px; width:0; height:2px; background: var(--accent); transition: width .35s var(--ease); border-radius: 2px; }

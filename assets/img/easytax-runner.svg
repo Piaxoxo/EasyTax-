@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="EasyTax">
+  <!-- large dark-blue motion swoosh (back / trailing leg) -->
+  <path d="M40 104 A 42 42 0 1 1 99 63"
+        fill="none" stroke="#1a5fa0" stroke-width="13" stroke-linecap="round"/>
+  <!-- periwinkle trailing leg -->
+  <path d="M44 70 q 2 22 -6 34"
+        fill="none" stroke="#7e93cf" stroke-width="12" stroke-linecap="round"/>
+  <!-- dark-blue front leg (driving forward) -->
+  <path d="M55 64 q 18 8 16 36"
+        fill="none" stroke="#1a5fa0" stroke-width="12" stroke-linecap="round"/>
+  <!-- torso -->
+  <path d="M49 70 L61 44"
+        fill="none" stroke="#2e6db5" stroke-width="12" stroke-linecap="round"/>
+  <!-- periwinkle raised arm -->
+  <path d="M58 47 q 16 -8 28 -3"
+        fill="none" stroke="#7e93cf" stroke-width="11" stroke-linecap="round"/>
+  <!-- green head -->
+  <circle cx="66" cy="26" r="13" fill="#8cc63f"/>
+</svg>

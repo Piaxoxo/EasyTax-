@@ -1,4 +1,5 @@
 preview-*.png
 view-*.png
+_render.mjs
 *.log
 .DS_Store
