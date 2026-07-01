@@ -1,41 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 1400 1400" preserveAspectRatio="xMidYMid slice">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1600" viewBox="0 0 1600 1600" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <!-- soft cloudy marble body -->
+    <!-- soft cloudy cream body -->
     <filter id="body" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.0055 0.009" numOctaves="5" seed="9" result="n"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.004 0.0075" numOctaves="5" seed="11" result="n"/>
       <feColorMatrix in="n" type="matrix"
-        values="0 0 0 0 0.80
+        values="0 0 0 0 0.88
                 0 0 0 0 0.85
-                0 0 0 0 0.82
-                0 0 0 -1.1 1.0"/>
+                0 0 0 0 0.79
+                0 0 0 -1.2 1.05"/>
     </filter>
-    <!-- thin green-grey veins -->
+    <!-- very fine taupe veins -->
     <filter id="veins" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence type="turbulence" baseFrequency="0.0035 0.018" numOctaves="4" seed="27" result="v"/>
+      <feTurbulence type="turbulence" baseFrequency="0.0028 0.014" numOctaves="4" seed="29" result="v"/>
       <feColorMatrix in="v" type="matrix"
-        values="0 0 0 0 0.30
-                0 0 0 0 0.46
-                0 0 0 0 0.40
-                0 0 0 -2.6 1.35"/>
+        values="0 0 0 0 0.62
+                0 0 0 0 0.56
+                0 0 0 0 0.47
+                0 0 0 -3.1 1.55"/>
     </filter>
-    <!-- faint secondary veins for depth -->
+    <!-- champagne whisper vein -->
     <filter id="veins2" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence type="turbulence" baseFrequency="0.002 0.03" numOctaves="3" seed="5" result="v2"/>
+      <feTurbulence type="turbulence" baseFrequency="0.0016 0.024" numOctaves="3" seed="6" result="v2"/>
       <feColorMatrix in="v2" type="matrix"
-        values="0 0 0 0 0.55
-                0 0 0 0 0.62
-                0 0 0 0 0.58
-                0 0 0 -3.0 1.55"/>
+        values="0 0 0 0 0.78
+                0 0 0 0 0.66
+                0 0 0 0 0.43
+                0 0 0 -3.6 1.75"/>
     </filter>
-    <radialGradient id="sheen" cx="32%" cy="14%" r="90%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
-      <stop offset="55%" stop-color="#f4f3ee" stop-opacity="0"/>
+    <radialGradient id="sheen" cx="28%" cy="12%" r="95%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="52%" stop-color="#f7f3ea" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
-  <rect width="1400" height="1400" fill="#f7f6f1"/>
-  <rect width="1400" height="1400" filter="url(#body)" opacity="0.5"/>
-  <rect width="1400" height="1400" filter="url(#veins2)" opacity="0.18"/>
-  <rect width="1400" height="1400" filter="url(#veins)" opacity="0.20"/>
-  <rect width="1400" height="1400" fill="url(#sheen)"/>
+  <rect width="1600" height="1600" fill="#f6f1e7"/>
+  <rect width="1600" height="1600" filter="url(#body)" opacity="0.42"/>
+  <rect width="1600" height="1600" filter="url(#veins2)" opacity="0.10"/>
+  <rect width="1600" height="1600" filter="url(#veins)" opacity="0.12"/>
+  <rect width="1600" height="1600" fill="url(#sheen)"/>
 </svg>
