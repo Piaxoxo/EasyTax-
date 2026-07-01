@@ -8,6 +8,23 @@
 <meta name="keywords" content="Steuerberater Wien, Steuerberatung Wien, Buchhaltung Wien, Lohnverrechnung Wien, Unternehmensgründung Wien, Steuerberater für Unternehmen, Steuerberater für Selbstständige, digitale Steuerberatung" />
 <meta name="author" content="EasyTax · Dr. Giangiacomo Bortoluzzi" />
 <meta name="theme-color" content="#efe9df" />
+<script>
+  /* Progressive enhancement guard: only hide content for JS-driven reveals
+     while JS is healthy. If main.js fails to load or run (e.g. an error on
+     any browser), reveal everything so the page is never blank. */
+  (function () {
+    var h = document.documentElement;
+    h.className += " js";
+    window.__etReady = false;
+    setTimeout(function () {
+      if (!window.__etReady) {
+        h.className = h.className.replace(/\bjs\b/, "");
+        var i = document.getElementById("intro");
+        if (i) i.style.display = "none";
+      }
+    }, 4500);
+  })();
+</script>
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="EasyTax · Steuerberatung Wien" />

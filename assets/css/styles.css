@@ -514,3 +514,31 @@ figcaption { margin-top: 18px; text-align: center; display: flex; flex-direction
   .scene-img { transform: none !important; }
   .olive-shadow, .scene-cue { display: none !important; }
 }
+
+/* ============================================================
+   Progressive-enhancement fallback + Safari/iOS hardening
+   If JS is unhealthy (no .js on <html>), never hide content.
+   ============================================================ */
+html:not(.js) .intro { display: none !important; }
+html:not(.js) .reveal,
+html:not(.js) .reveal-line,
+html:not(.js) .reveal-lines,
+html:not(.js) .mega,
+html:not(.js) .num,
+html:not(.js) .scene-panel,
+html:not(.js) .step { opacity: 1 !important; transform: none !important; }
+html:not(.js) .line > span,
+html:not(.js) .reveal-line > span { transform: none !important; }
+/* On non-pin fallback, let scene panels stack readably */
+html:not(.js) .scene-content { position: relative; display: block; }
+html:not(.js) .scene-panel { position: relative; grid-area: auto; }
+
+/* iOS/Safari: reduce heavy fixed compositing on small screens */
+@media (max-width: 860px) {
+  .light-sweep { display: none; }
+}
+/* Fallback if backdrop-filter unsupported: keep glass legible */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass, .request-form.glass { background: rgba(255,255,255,.9); }
+  .site-header.scrolled { background: rgba(239,233,223,.96); }
+}

@@ -7,6 +7,21 @@
 (function () {
   "use strict";
 
+  /* Safari/older-browser insurance: NodeList.forEach */
+  if (window.NodeList && !NodeList.prototype.forEach) { NodeList.prototype.forEach = Array.prototype.forEach; }
+
+  var HTML = document.documentElement;
+  function failsafe() {
+    try { HTML.className = HTML.className.replace(/\bjs\b/, ""); } catch (e) {}
+    var i = document.getElementById("intro"); if (i) i.style.display = "none";
+    var els = document.querySelectorAll(".reveal,.reveal-line,.reveal-lines,.mega,.num,.scene-panel,.step");
+    for (var k = 0; k < els.length; k++) { els[k].className += " in on"; }
+    var sp = document.querySelectorAll(".line>span,.reveal-line>span");
+    for (var j = 0; j < sp.length; j++) { sp[j].style.transform = "none"; }
+  }
+
+  try {
+
   var RECIPIENT     = "office@easytax.eu";
   var SUBJECT       = "Anfrage von Webseite";
   var WEB3FORMS_KEY = "";
@@ -222,4 +237,7 @@
   }
 
   var y = document.getElementById("year"); if (y) y.textContent = new Date().getFullYear();
+
+  window.__etReady = true;
+  } catch (err) { failsafe(); if (window.console && console.error) console.error("EasyTax init error:", err); }
 })();
