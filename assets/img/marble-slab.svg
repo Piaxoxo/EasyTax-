@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="2000" viewBox="0 0 1200 2000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#faf7f1"/>
+      <stop offset="45%" stop-color="#f2ede4"/>
+      <stop offset="100%" stop-color="#e8e1d5"/>
+    </linearGradient>
+    <!-- broad soft clouding -->
+    <filter id="cloud" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0035 0.006" numOctaves="5" seed="17" result="n"/>
+      <feColorMatrix in="n" type="matrix"
+        values="0 0 0 0 0.72
+                0 0 0 0 0.69
+                0 0 0 0 0.63
+                0 0 0 -1.1 1.02"/>
+    </filter>
+    <!-- fine grey veins, displaced for organic flow -->
+    <filter id="veins" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="turbulence" baseFrequency="0.006 0.02" numOctaves="5" seed="41" result="v"/>
+      <feColorMatrix in="v" type="matrix"
+        values="0 0 0 0 0.28
+                0 0 0 0 0.26
+                0 0 0 0 0.23
+                0 0 0 -2.6 1.28" result="vein"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="2" seed="9" result="d"/>
+      <feDisplacementMap in="vein" in2="d" scale="26"/>
+    </filter>
+    <!-- champagne gold vein accents -->
+    <filter id="gold" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="turbulence" baseFrequency="0.0045 0.03" numOctaves="4" seed="23" result="g"/>
+      <feColorMatrix in="g" type="matrix"
+        values="0 0 0 0 0.70
+                0 0 0 0 0.55
+                0 0 0 0 0.28
+                0 0 0 -3.4 1.62" result="gv"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" seed="3" result="gd"/>
+      <feDisplacementMap in="gv" in2="gd" scale="32"/>
+    </filter>
+    <radialGradient id="sheen" cx="30%" cy="8%" r="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="48%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="2000" fill="url(#base)"/>
+  <rect width="1200" height="2000" filter="url(#cloud)" opacity="0.38"/>
+  <rect width="1200" height="2000" filter="url(#gold)" opacity="0.16"/>
+  <rect width="1200" height="2000" filter="url(#veins)" opacity="0.20"/>
+  <rect width="1200" height="2000" fill="url(#sheen)"/>
+</svg>

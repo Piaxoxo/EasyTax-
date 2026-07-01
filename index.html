@@ -7,8 +7,8 @@
 <meta name="description" content="EasyTax ist die persönlich geführte Steuerberatung in Wien. Steuerberatung, Buchhaltung & Lohnverrechnung in Wien für Unternehmen, Selbstständige und Gründer. Seit 1993. Geführt von Dr. Giangiacomo Bortoluzzi." />
 <meta name="keywords" content="Steuerberater Wien, Steuerberatung Wien, Buchhaltung Wien, Lohnverrechnung Wien, Unternehmensgründung Wien, Steuerberater für Unternehmen, Steuerberater für Selbstständige, digitale Steuerberatung" />
 <meta name="author" content="EasyTax · Dr. Giangiacomo Bortoluzzi" />
+<meta name="theme-color" content="#efe9df" />
 
-<!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="EasyTax · Steuerberatung Wien" />
 <meta property="og:description" content="Sie führen Ihr Unternehmen. Die Zahlen führen wir. Persönlich geführte Steuerberatung in Wien seit 1993." />
@@ -17,11 +17,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/svg+xml" href="assets/img/easytax-runner.svg" />
 <link rel="stylesheet" href="assets/css/styles.css" />
 
-<!-- Structured data: local business + person + FAQ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -34,57 +33,48 @@
   "faxNumber": "+431913336750",
   "foundingDate": "1993-05-07",
   "areaServed": "Wien",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Veithgasse 6",
-    "postalCode": "1030",
-    "addressLocality": "Wien",
-    "addressCountry": "AT"
-  },
-  "founder": {
-    "@type": "Person",
-    "name": "Dr. Giangiacomo Bortoluzzi",
-    "jobTitle": "Steuerberater, Gründer"
-  }
+  "address": { "@type": "PostalAddress", "streetAddress": "Veithgasse 6", "postalCode": "1030", "addressLocality": "Wien", "addressCountry": "AT" },
+  "founder": { "@type": "Person", "name": "Dr. Giangiacomo Bortoluzzi", "jobTitle": "Steuerberater, Gründer" }
 }
 </script>
 </head>
 <body>
 
-<!-- ░░░ Liquid glass background ░░░ -->
-<div class="bg-mesh" aria-hidden="true">
-  <span class="blob blob-1"></span>
-  <span class="blob blob-2"></span>
-  <span class="blob blob-3"></span>
-  <span class="grain"></span>
+<!-- Cinematic layers -->
+<div class="grain" aria-hidden="true"></div>
+<div class="bg-field" aria-hidden="true"><span class="light-sweep"></span></div>
+<div class="stage" aria-hidden="true"><div class="monolith" data-monolith><img src="assets/img/marble-slab.svg" alt="" /></div></div>
+<div class="cursor-light" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- Intro curtain -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-word"><span>easy</span><span>tax</span></div>
+  <div class="intro-line"></div>
 </div>
 
 <!-- ░░░ Header ░░░ -->
 <header class="site-header" id="header">
-  <div class="container header-inner">
+  <div class="shell header-inner">
     <a href="#hero" class="brand" aria-label="EasyTax Startseite">
       <span class="brand-word"><span class="w-easy">easy</span><span class="w-tax">tax</span></span>
-      <img src="assets/img/easytax-runner.svg" alt="EasyTax Logo" class="brand-runner" width="46" height="46" />
+      <img src="assets/img/easytax-runner.svg" alt="EasyTax Logo" class="brand-runner" width="42" height="42" />
     </a>
-
     <nav class="nav" aria-label="Hauptnavigation">
-      <a href="#leistungen">Leistungen</a>
-      <a href="#story">Dr. Bortoluzzi</a>
-      <a href="#wechsel">Wechseln</a>
-      <a href="#faq">FAQ</a>
+      <a href="#leistungen" data-magnetic>Leistungen</a>
+      <a href="#story" data-magnetic>Dr. Bortoluzzi</a>
+      <a href="#wechsel" data-magnetic>Wechseln</a>
+      <a href="#faq" data-magnetic>FAQ</a>
     </nav>
-
     <div class="header-cta">
-      <a href="tel:+43191333670" class="btn btn-ghost btn-call" aria-label="EasyTax anrufen">
+      <a href="tel:+43191333670" class="link-call" aria-label="EasyTax anrufen" data-magnetic>
         <svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
-        <span>Anrufen</span>
+        <span>+43 1 913 3367-0</span>
       </a>
-      <a href="#anfrage" class="btn btn-primary">Erstgespräch</a>
+      <a href="#anfrage" class="btn btn-foil" data-magnetic><span>Erstgespräch</span></a>
     </div>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span></button>
   </div>
 </header>
 
@@ -92,279 +82,287 @@
 
 <!-- ░░░ 1 · Hero ░░░ -->
 <section class="hero" id="hero">
-  <div class="hero-decor" aria-hidden="true">
-    <span class="decor-slab decor-slab--1" data-parallax="0.06" data-rot="6deg"></span>
-    <span class="decor-slab decor-slab--2" data-parallax="0.10" data-rot="-8deg"></span>
-    <span class="decor-line decor-line--v" data-depth="14"></span>
-    <span class="decor-ring" data-depth="22"><span>Est.<br />1993</span></span>
-  </div>
-  <div class="container hero-grid">
-    <div class="hero-copy rise">
-      <p class="eyebrow">Steuerberatung Wien · seit 1993</p>
-      <h1 class="display">Sie führen Ihr Unternehmen.<br /><span class="accent">Die Zahlen führen wir.</span></h1>
-      <p class="lead">Die Steuerberatung in Wien für Unternehmer, die nicht verwaltet, sondern begleitet werden wollen. Persönlich geführt von Dr. Giangiacomo Bortoluzzi.</p>
-      <p class="body">Die meisten Unternehmer haben einen Steuerberater. Wenige haben jemanden, der mitdenkt.</p>
-      <div class="hero-actions">
-        <a href="#anfrage" class="btn btn-primary btn-lg">Erstgespräch vereinbaren</a>
-        <a href="tel:+43191333670" class="btn btn-glass btn-lg btn-call">
-          <svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
-        +43 1 913 3367-0</a>
-      </div>
-    </div>
-
-    <div class="hero-portrait reveal">
-      <div class="glass portrait-card">
-        <div class="portrait-img">
-          <img src="assets/img/dr-bortoluzzi.jpg" alt="Dr. Giangiacomo Bortoluzzi, Gründer von EasyTax" loading="lazy" />
-        </div>
-        <div class="portrait-caption">
-          <p class="pc-name">Dr. Giangiacomo Bortoluzzi</p>
-          <p class="pc-role">Gründer &amp; Steuerberater</p>
-        </div>
+  <div class="shell hero-inner">
+    <p class="kicker reveal-line"><span>Steuerberatung Wien — seit 1993</span></p>
+    <h1 class="mega">
+      <span class="line"><span>Sie führen</span></span>
+      <span class="line"><span>Ihr Unternehmen.</span></span>
+      <span class="line italic gold-text"><span>Die Zahlen führen wir.</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="hero-lede reveal">Die Steuerberatung in Wien für Unternehmer, die nicht verwaltet, sondern begleitet werden wollen. Persönlich geführt von Dr. Giangiacomo Bortoluzzi.</p>
+      <div class="hero-actions reveal">
+        <a href="#anfrage" class="btn btn-ink" data-magnetic><span>Erstgespräch vereinbaren</span></a>
+        <a href="tel:+43191333670" class="btn btn-line" data-magnetic><span>+43 1 913 3367-0</span></a>
       </div>
     </div>
   </div>
+
+  <figure class="hero-plate" data-tilt data-parallax="0.06">
+    <div class="plate-frame">
+      <img src="assets/img/dr-bortoluzzi.jpg" alt="Dr. Giangiacomo Bortoluzzi, Gründer von EasyTax" />
+      <span class="plate-seal" aria-hidden="true"><span>Est.<br/>1993</span></span>
+    </div>
+    <figcaption><span class="pc-name">Dr. Giangiacomo Bortoluzzi</span><span class="pc-role">Gründer &amp; Steuerberater</span></figcaption>
+  </figure>
+
+  <div class="scroll-cue" aria-hidden="true"><span>Scrollen</span><i></i></div>
 </section>
 
-<!-- ░░░ 2 · Trust ░░░ -->
-<section class="trust">
-  <div class="container">
-    <div class="glass trust-bar reveal">
-      <div class="trust-item"><strong data-count="32" data-suffix="+">0</strong><span>Jahre seit 1993</span></div>
-      <div class="trust-divider"></div>
-      <div class="trust-item"><strong data-count="500" data-suffix="+">0</strong><span>begleitete Unternehmen</span></div>
-      <div class="trust-divider"></div>
-      <div class="trust-item"><strong data-count="90" data-suffix="%">0</strong><span>bleiben langfristig*</span></div>
-      <div class="trust-divider"></div>
-      <div class="trust-item"><strong>1</strong><span>fester Ansprechpartner</span></div>
-    </div>
+<!-- ░░░ Manifesto ░░░ -->
+<section class="manifesto">
+  <div class="shell">
+    <p class="statement reveal-lines">
+      <span class="line"><span>Die meisten Unternehmer</span></span>
+      <span class="line"><span>haben einen Steuerberater.</span></span>
+      <span class="line dim"><span>Wenige haben jemanden,</span></span>
+      <span class="line gold-text italic"><span>der mitdenkt.</span></span>
+    </p>
   </div>
 </section>
 
-<!-- ░░░ 3 · Warum EasyTax ░░░ -->
-<section class="section" id="warum">
-  <div class="container">
-    <header class="section-head reveal">
-      <p class="eyebrow">Der Unterschied</p>
-      <h2>Ein Steuerberater verwaltet Ihre Vergangenheit.<br /><span class="accent">Wir denken über Ihre Zukunft nach.</span></h2>
-      <p class="section-sub">Buchhaltung kann jeder. Den richtigen Moment erkennen – das ist der Unterschied.</p>
+<!-- ░░░ 2 · Der Unterschied ░░░ -->
+<section class="chapter" id="warum">
+  <div class="shell">
+    <header class="chapter-head">
+      <span class="chapter-no" data-count-roman>01</span>
+      <span class="chapter-label reveal">Der Unterschied</span>
     </header>
+    <h2 class="editorial reveal-lines">
+      <span class="line"><span>Ein Steuerberater verwaltet</span></span>
+      <span class="line"><span>Ihre Vergangenheit.</span></span>
+      <span class="line gold-text italic"><span>Wir denken über Ihre Zukunft nach.</span></span>
+    </h2>
+    <p class="chapter-sub reveal">Buchhaltung kann jeder. Den richtigen Moment erkennen — das ist der Unterschied.</p>
 
-    <div class="pillars">
-      <article class="glass card reveal">
-        <div class="card-ic">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 5v1h14v-1c0-3-3-5-7-5z"/></svg>
-        </div>
+    <ol class="triptych">
+      <li class="tri reveal" data-tilt>
+        <span class="tri-no">01</span>
         <h3>Persönlich, nicht delegiert.</h3>
-        <p>Sie bekommen einen festen Ansprechpartner – nicht jedes Quartal ein neues Gesicht.</p>
-      </article>
-      <article class="glass card reveal">
-        <div class="card-ic">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-5 4 4 8-9-1.5-1.3-6.5 7.3-4-4L2 15.5z"/></svg>
-        </div>
+        <p>Sie bekommen einen festen Ansprechpartner — nicht jedes Quartal ein neues Gesicht.</p>
+      </li>
+      <li class="tri reveal" data-tilt>
+        <span class="tri-no">02</span>
         <h3>Unternehmerisch, nicht nur korrekt.</h3>
-        <p>Wir rechnen nicht nur nach. Wir denken mit – bei jeder Entscheidung, die Geld bewegt.</p>
-      </article>
-      <article class="glass card reveal">
-        <div class="card-ic">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/></svg>
-        </div>
+        <p>Wir rechnen nicht nur nach. Wir denken mit — bei jeder Entscheidung, die Geld bewegt.</p>
+      </li>
+      <li class="tri reveal" data-tilt>
+        <span class="tri-no">03</span>
         <h3>Da, wenn es darauf ankommt.</h3>
-        <p>Wachstum, Gründung, Krise: Wir begleiten jede Phase – auch die schwierigen.</p>
-      </article>
-    </div>
+        <p>Wachstum, Gründung, Krise: Wir begleiten jede Phase — auch die schwierigen.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
-<!-- ░░░ 4 · Leistungen ░░░ -->
-<section class="section" id="leistungen">
-  <div class="container">
-    <header class="section-head reveal">
-      <p class="eyebrow">Leistungen</p>
-      <h2>Alles, was ein Unternehmen braucht.<br /><span class="accent">Von einem, der alle Phasen kennt.</span></h2>
-      <p class="section-sub">Steuerberatung, Buchhaltung und Lohnverrechnung in Wien – bis hin zur Begleitung in Wachstum und Krise. Aus einer Hand.</p>
+<!-- ░░░ 3 · Leistungen (floating index) ░░░ -->
+<section class="chapter chapter--services" id="leistungen">
+  <div class="shell">
+    <header class="chapter-head">
+      <span class="chapter-no">02</span>
+      <span class="chapter-label reveal">Leistungen</span>
     </header>
+    <h2 class="editorial reveal-lines">
+      <span class="line"><span>Alles, was ein Unternehmen braucht.</span></span>
+      <span class="line gold-text italic"><span>Von einem, der alle Phasen kennt.</span></span>
+    </h2>
+    <p class="chapter-sub reveal">Steuerberatung, Buchhaltung und Lohnverrechnung in Wien — bis hin zur Begleitung in Wachstum und Krise. Aus einer Hand.</p>
 
-    <div class="services-grid">
-      <div class="glass svc-group reveal">
-        <h3 class="svc-title">Laufende Betreuung</h3>
-        <ul class="svc-list">
-          <li>Steuerberatung</li>
-          <li>Buchhaltung</li>
-          <li>Lohnverrechnung</li>
-          <li>Bilanzierung &amp; Jahresabschluss</li>
+    <div class="svc-index">
+      <div class="svc-phase reveal">
+        <p class="phase-label"><span>I</span> Laufende Betreuung</p>
+        <ul class="svc-lines">
+          <li data-service="Steuerberatung"><span class="s-no">01</span><span class="s-name">Steuerberatung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li data-service="Buchhaltung"><span class="s-no">02</span><span class="s-name">Buchhaltung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li data-service="Lohnverrechnung"><span class="s-no">03</span><span class="s-name">Lohnverrechnung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li data-service="Bilanzierung / Jahresabschluss"><span class="s-no">04</span><span class="s-name">Bilanzierung &amp; Jahresabschluss</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
         </ul>
-        <a href="#anfrage" class="svc-link" data-service="Laufende Betreuung">Anfragen →</a>
       </div>
-
-      <div class="glass svc-group reveal">
-        <h3 class="svc-title">Wachstum &amp; Aufbau</h3>
-        <ul class="svc-list">
-          <li>Unternehmensgründung</li>
-          <li>Beratung für Unternehmen &amp; Selbstständige</li>
-          <li>Beratung für Gründer</li>
-          <li>Digitale Steuerberatung</li>
+      <div class="svc-phase reveal">
+        <p class="phase-label"><span>II</span> Wachstum &amp; Aufbau</p>
+        <ul class="svc-lines">
+          <li data-service="Unternehmensgründung"><span class="s-no">05</span><span class="s-name">Unternehmensgründung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li data-service="Beratung für Unternehmen & Selbstständige"><span class="s-no">06</span><span class="s-name">Beratung für Unternehmen &amp; Selbstständige</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li data-service="Beratung für Gründer"><span class="s-no">07</span><span class="s-name">Beratung für Gründer</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li data-service="Digitale Steuerberatung"><span class="s-no">08</span><span class="s-name">Digitale Steuerberatung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
         </ul>
-        <a href="#anfrage" class="svc-link" data-service="Wachstum & Aufbau">Anfragen →</a>
       </div>
-
-      <div class="glass svc-group reveal">
-        <h3 class="svc-title">Krise &amp; Wende</h3>
-        <ul class="svc-list">
-          <li>Restrukturierung</li>
-          <li>Krisenmanagement</li>
-          <li>Insolvenzberatung</li>
+      <div class="svc-phase reveal">
+        <p class="phase-label"><span>III</span> Krise &amp; Wende</p>
+        <ul class="svc-lines">
+          <li data-service="Restrukturierung"><span class="s-no">09</span><span class="s-name">Restrukturierung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li data-service="Krisenmanagement"><span class="s-no">10</span><span class="s-name">Krisenmanagement</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li data-service="Insolvenzberatung"><span class="s-no">11</span><span class="s-name">Insolvenzberatung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
         </ul>
-        <a href="#anfrage" class="svc-link" data-service="Krise & Wende">Anfragen →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ░░░ 5 · Story ░░░ -->
-<section class="section story" id="story">
-  <div class="container story-grid">
-    <div class="story-portrait reveal">
-      <div class="glass portrait-card portrait-card--lg">
-        <div class="portrait-img">
-          <img src="assets/img/dr-bortoluzzi.jpg" alt="Dr. Giangiacomo Bortoluzzi, Gründer von EasyTax" loading="lazy" />
-        </div>
-      </div>
-    </div>
-    <div class="story-copy reveal">
-      <p class="eyebrow">Die Geschichte</p>
-      <h2>1993 gründete er seine eigene Kanzlei.<br /><span class="accent">Heute vertrauen ihm Unternehmer ihr Lebenswerk an.</span></h2>
-      <p class="body">Es ist leicht, eine Kanzlei zu führen, wenn man nie selbst etwas riskiert hat.</p>
-      <p class="body">Dr. Bortoluzzi weiß, wie sich der erste eigene Schritt anfühlt. Die Unsicherheit. Den Druck. Den Moment, in dem man sich entscheidet, es trotzdem zu tun.</p>
-      <p class="body">Genau deshalb versteht er Unternehmer. Nicht aus Lehrbüchern. Aus Erfahrung.</p>
-      <blockquote class="pull-quote">„Ich habe nie Zahlen beraten. Ich habe immer Menschen beraten, die etwas wagen."</blockquote>
-      <p class="quote-author">— Dr. Giangiacomo Bortoluzzi</p>
-    </div>
+<!-- ░░░ 4 · Story (documentary) ░░░ -->
+<section class="story" id="story">
+  <div class="story-media" data-parallax="0.06">
+    <img src="assets/img/dr-bortoluzzi.jpg" alt="Dr. Giangiacomo Bortoluzzi" />
+    <span class="story-grade" aria-hidden="true"></span>
   </div>
-</section>
-
-<!-- ░░░ 7 · Warum Unternehmer wechseln ░░░ -->
-<section class="section" id="wechsel">
-  <div class="container">
-    <header class="section-head reveal">
-      <p class="eyebrow">Der Wechsel</p>
-      <h2>Niemand wechselt den Steuerberater leichtfertig.<br /><span class="accent">Aber irgendwann reicht „es läuft ja".</span></h2>
+  <div class="shell story-inner">
+    <header class="chapter-head light">
+      <span class="chapter-no">03</span>
+      <span class="chapter-label reveal">Die Geschichte</span>
     </header>
+    <h2 class="editorial light reveal-lines">
+      <span class="line"><span>1993 gründete er</span></span>
+      <span class="line"><span>seine eigene Kanzlei.</span></span>
+      <span class="line gold-text italic"><span>Heute vertrauen ihm Unternehmer ihr Lebenswerk an.</span></span>
+    </h2>
+    <div class="story-body reveal">
+      <p>Es ist leicht, eine Kanzlei zu führen, wenn man nie selbst etwas riskiert hat.</p>
+      <p>Dr. Bortoluzzi weiß, wie sich der erste eigene Schritt anfühlt. Die Unsicherheit. Den Druck. Den Moment, in dem man sich entscheidet, es trotzdem zu tun.</p>
+      <p>Genau deshalb versteht er Unternehmer. Nicht aus Lehrbüchern. Aus Erfahrung.</p>
+    </div>
+    <blockquote class="film-quote reveal-lines">
+      <span class="line"><span>„Ich habe nie Zahlen beraten.</span></span>
+      <span class="line gold-text italic"><span>Ich habe immer Menschen beraten, die etwas wagen.“</span></span>
+    </blockquote>
+    <p class="quote-author reveal">— Dr. Giangiacomo Bortoluzzi</p>
+  </div>
+</section>
+
+<!-- ░░░ 5 · Zahlen (spatial) ░░░ -->
+<section class="chapter chapter--numbers" id="zahlen">
+  <div class="shell">
+    <header class="chapter-head">
+      <span class="chapter-no">04</span>
+      <span class="chapter-label reveal">Zahlen</span>
+    </header>
+    <h2 class="editorial reveal-lines">
+      <span class="line"><span>Vertrauen lässt sich messen.</span></span>
+    </h2>
+    <p class="chapter-sub reveal">Wir reden nicht gern über uns. Diese Zahlen tun es für uns.</p>
+
+    <div class="numbers">
+      <div class="num reveal"><span class="num-val" data-count="32" data-suffix="+">0</span><span class="num-label">Jahre seit 1993</span></div>
+      <div class="num reveal"><span class="num-val" data-count="500" data-suffix="+">0</span><span class="num-label">begleitete Unternehmen</span></div>
+      <div class="num reveal"><span class="num-val" data-count="90" data-suffix="%">0</span><span class="num-label">bleiben langfristig*</span></div>
+      <div class="num reveal"><span class="num-val">1</span><span class="num-label">fester Ansprechpartner</span></div>
+    </div>
+    <p class="footnote reveal">*Platzhalter — vor Live-Schaltung durch belegbare Werte ersetzen.</p>
+  </div>
+</section>
+
+<!-- ░░░ 6 · Wechsel ░░░ -->
+<section class="chapter" id="wechsel">
+  <div class="shell">
+    <header class="chapter-head">
+      <span class="chapter-no">05</span>
+      <span class="chapter-label reveal">Der Wechsel</span>
+    </header>
+    <h2 class="editorial reveal-lines">
+      <span class="line"><span>Niemand wechselt</span></span>
+      <span class="line"><span>den Steuerberater leichtfertig.</span></span>
+      <span class="line gold-text italic"><span>Aber irgendwann reicht „es läuft ja“.</span></span>
+    </h2>
 
     <div class="switch-grid">
-      <div class="switch-pains reveal">
-        <p class="pain">„Ich erreiche ihn nie, wenn ich ihn wirklich brauche."</p>
-        <p class="pain">„Ich bekomme Antworten – aber nie die Fragen, die ich hätte stellen sollen."</p>
-        <p class="pain">„Ich habe das Gefühl, eine Nummer zu sein."</p>
-        <p class="pain-resolve">Kommt Ihnen das bekannt vor? Dann liegt es nicht an Ihnen.</p>
+      <div class="switch-pains">
+        <p class="pain reveal">„Ich erreiche ihn nie, wenn ich ihn wirklich brauche.“</p>
+        <p class="pain reveal">„Ich bekomme Antworten — aber nie die Fragen, die ich hätte stellen sollen.“</p>
+        <p class="pain reveal">„Ich habe das Gefühl, eine Nummer zu sein.“</p>
+        <p class="pain-resolve reveal">Kommt Ihnen das bekannt vor? Dann liegt es nicht an Ihnen.</p>
       </div>
-
       <div class="switch-promises">
-        <div class="glass mini-card reveal">
-          <h3>Einfacher, als Sie denken.</h3>
-          <p>Wir übernehmen die Kommunikation mit Ihrem bisherigen Berater. Sie unterschreiben einmal.</p>
-        </div>
-        <div class="glass mini-card reveal">
-          <h3>Kein Datenchaos.</h3>
-          <p>Wir holen Ihre Unterlagen sauber und vollständig ab. Lückenlos.</p>
-        </div>
-        <div class="glass mini-card reveal">
-          <h3>Kein verlorener Moment.</h3>
-          <p>Wir steigen ein, ohne dass etwas liegen bleibt – mitten im Jahr, jederzeit.</p>
-        </div>
-        <a href="#anfrage" class="btn btn-primary">Wechsel unverbindlich besprechen</a>
+        <div class="promise glass reveal" data-tilt><h3>Einfacher, als Sie denken.</h3><p>Wir übernehmen die Kommunikation mit Ihrem bisherigen Berater. Sie unterschreiben einmal.</p></div>
+        <div class="promise glass reveal" data-tilt><h3>Kein Datenchaos.</h3><p>Wir holen Ihre Unterlagen sauber und vollständig ab. Lückenlos.</p></div>
+        <div class="promise glass reveal" data-tilt><h3>Kein verlorener Moment.</h3><p>Wir steigen ein, ohne dass etwas liegen bleibt — mitten im Jahr, jederzeit.</p></div>
+        <a href="#anfrage" class="btn btn-ink reveal" data-magnetic><span>Wechsel unverbindlich besprechen</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ░░░ 8 · Testimonials ░░░ -->
-<section class="section" id="stimmen">
-  <div class="container">
-    <header class="section-head reveal">
-      <p class="eyebrow">Stimmen</p>
-      <h2>Was Unternehmer sagen,<br /><span class="accent">die geblieben sind.</span></h2>
-      <p class="section-sub">Keine Bewertungen. Beziehungen. <em>(Beispiel-Stimmen – vor Live-Schaltung durch echte Mandantenstimmen ersetzen.)</em></p>
+<!-- ░░░ 7 · Stimmen ░░░ -->
+<section class="chapter" id="stimmen">
+  <div class="shell">
+    <header class="chapter-head">
+      <span class="chapter-no">06</span>
+      <span class="chapter-label reveal">Stimmen</span>
     </header>
+    <h2 class="editorial reveal-lines">
+      <span class="line"><span>Was Unternehmer sagen,</span></span>
+      <span class="line gold-text italic"><span>die geblieben sind.</span></span>
+    </h2>
+    <p class="chapter-sub reveal">Keine Bewertungen. Beziehungen. <em>(Beispiel-Stimmen — vor Live-Schaltung durch echte Mandantenstimmen ersetzen.)</em></p>
 
-    <div class="testi-grid">
-      <figure class="glass testi reveal">
-        <blockquote>„Ich habe dreimal den Steuerberater gewechselt, bevor ich verstanden habe, was ich suche. Bei EasyTax habe ich es gefunden: jemanden, der anruft, bevor ich anrufen muss."</blockquote>
+    <div class="testi-row">
+      <figure class="testi glass reveal" data-tilt>
+        <blockquote>„Ich habe dreimal den Steuerberater gewechselt, bevor ich verstanden habe, was ich suche. Bei EasyTax habe ich es gefunden: jemanden, der anruft, bevor ich anrufen muss.“</blockquote>
         <figcaption><span class="t-avatar">MK</span><span><strong>M. K.</strong><br />Gastronomie, Wien</span></figcaption>
       </figure>
-      <figure class="glass testi reveal">
-        <blockquote>„Als es bei uns finanziell eng wurde, ist Dr. Bortoluzzi nicht abgesprungen. Er hat sich hingesetzt und mit uns einen Weg gefunden. Das vergisst man nicht."</blockquote>
+      <figure class="testi glass reveal" data-tilt>
+        <blockquote>„Als es bei uns finanziell eng wurde, ist Dr. Bortoluzzi nicht abgesprungen. Er hat sich hingesetzt und mit uns einen Weg gefunden. Das vergisst man nicht.“</blockquote>
         <figcaption><span class="t-avatar">TR</span><span><strong>T. R.</strong><br />Bauunternehmen</span></figcaption>
       </figure>
-      <figure class="glass testi reveal">
-        <blockquote>„Ich bin als Gründerin mit einer Excel-Tabelle gekommen. Heute habe ich elf Mitarbeiter. EasyTax war von Tag eins dabei."</blockquote>
+      <figure class="testi glass reveal" data-tilt>
+        <blockquote>„Ich bin als Gründerin mit einer Excel-Tabelle gekommen. Heute habe ich elf Mitarbeiter. EasyTax war von Tag eins dabei.“</blockquote>
         <figcaption><span class="t-avatar">SL</span><span><strong>S. L.</strong><br />Agenturinhaberin, Wien</span></figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ░░░ 9 · FAQ ░░░ -->
-<section class="section" id="faq">
-  <div class="container narrow">
-    <header class="section-head reveal">
-      <p class="eyebrow">Klarheit</p>
-      <h2>Was Unternehmer fragen,<br /><span class="accent">bevor sie sich entscheiden.</span></h2>
+<!-- ░░░ 8 · FAQ ░░░ -->
+<section class="chapter chapter--faq" id="faq">
+  <div class="shell narrow">
+    <header class="chapter-head">
+      <span class="chapter-no">07</span>
+      <span class="chapter-label reveal">Klarheit</span>
     </header>
+    <h2 class="editorial reveal-lines">
+      <span class="line"><span>Was Unternehmer fragen,</span></span>
+      <span class="line gold-text italic"><span>bevor sie sich entscheiden.</span></span>
+    </h2>
 
-    <div class="faq reveal">
-      <details class="glass faq-item">
-        <summary>Was kostet die Zusammenarbeit mit EasyTax?<span class="faq-x"></span></summary>
-        <p>Das hängt von Ihrem Unternehmen ab – ehrlicherweise gibt es keinen Pauschalpreis. Im kostenlosen Erstgespräch sehen wir uns Ihre Situation an und Sie erhalten eine klare, transparente Einschätzung. Ohne Verpflichtung.</p>
-      </details>
-      <details class="glass faq-item">
-        <summary>Ist der Wechsel kompliziert?<span class="faq-x"></span></summary>
-        <p>Nein. Sie unterschreiben eine Vollmacht, wir übernehmen den Rest – inklusive der Kommunikation mit Ihrem bisherigen Steuerberater. Der Wechsel ist jederzeit möglich, auch mitten im Jahr.</p>
-      </details>
-      <details class="glass faq-item">
-        <summary>Arbeitet EasyTax digital?<span class="faq-x"></span></summary>
-        <p>Ja. Sie können Belege digital einreichen und haben jederzeit Überblick über Ihre Zahlen. Digitale Steuerberatung bedeutet bei uns aber nicht weniger Mensch – sondern mehr Zeit für das Gespräch.</p>
-      </details>
-      <details class="glass faq-item">
-        <summary>Betreut mich Dr. Bortoluzzi persönlich?<span class="faq-x"></span></summary>
-        <p>Sie haben immer einen festen Ansprechpartner. Dr. Bortoluzzi und sein Team stehen für dasselbe Qualitätsversprechen – persönliche Betreuung ist bei uns die Grundlage, kein Zusatz.</p>
-      </details>
-      <details class="glass faq-item">
-        <summary>Hilft EasyTax auch in finanziell schwierigen Phasen?<span class="faq-x"></span></summary>
-        <p>Gerade dann. Restrukturierung, Krisenmanagement und Insolvenzberatung gehören zu unseren Kernkompetenzen. Wir begleiten Unternehmen nicht nur, wenn es leicht ist.</p>
-      </details>
-      <details class="glass faq-item">
-        <summary>Für wen ist EasyTax gedacht?<span class="faq-x"></span></summary>
-        <p>Für Unternehmen, Selbstständige und Gründer in Wien und darüber hinaus, die mehr wollen als Buchhaltung – einen Partner, der mitdenkt.</p>
-      </details>
+    <div class="faq">
+      <details class="faq-item reveal"><summary>Was kostet die Zusammenarbeit mit EasyTax?<span class="faq-x"></span></summary><p>Das hängt von Ihrem Unternehmen ab — ehrlicherweise gibt es keinen Pauschalpreis. Im kostenlosen Erstgespräch sehen wir uns Ihre Situation an und Sie erhalten eine klare, transparente Einschätzung. Ohne Verpflichtung.</p></details>
+      <details class="faq-item reveal"><summary>Ist der Wechsel kompliziert?<span class="faq-x"></span></summary><p>Nein. Sie unterschreiben eine Vollmacht, wir übernehmen den Rest — inklusive der Kommunikation mit Ihrem bisherigen Steuerberater. Der Wechsel ist jederzeit möglich, auch mitten im Jahr.</p></details>
+      <details class="faq-item reveal"><summary>Arbeitet EasyTax digital?<span class="faq-x"></span></summary><p>Ja. Sie können Belege digital einreichen und haben jederzeit Überblick über Ihre Zahlen. Digitale Steuerberatung bedeutet bei uns aber nicht weniger Mensch — sondern mehr Zeit für das Gespräch.</p></details>
+      <details class="faq-item reveal"><summary>Betreut mich Dr. Bortoluzzi persönlich?<span class="faq-x"></span></summary><p>Sie haben immer einen festen Ansprechpartner. Dr. Bortoluzzi und sein Team stehen für dasselbe Qualitätsversprechen — persönliche Betreuung ist bei uns die Grundlage, kein Zusatz.</p></details>
+      <details class="faq-item reveal"><summary>Hilft EasyTax auch in finanziell schwierigen Phasen?<span class="faq-x"></span></summary><p>Gerade dann. Restrukturierung, Krisenmanagement und Insolvenzberatung gehören zu unseren Kernkompetenzen. Wir begleiten Unternehmen nicht nur, wenn es leicht ist.</p></details>
+      <details class="faq-item reveal"><summary>Für wen ist EasyTax gedacht?<span class="faq-x"></span></summary><p>Für Unternehmen, Selbstständige und Gründer in Wien und darüber hinaus, die mehr wollen als Buchhaltung — einen Partner, der mitdenkt.</p></details>
     </div>
   </div>
 </section>
 
-<!-- ░░░ 10 · Anfrage / Reservierung ░░░ -->
-<section class="section" id="anfrage">
-  <div class="container">
-    <div class="glass request-card reveal">
-      <div class="request-intro">
-        <p class="eyebrow">Erstgespräch · unverbindlich</p>
-        <h2>Vielleicht ist es Zeit für einen Steuerberater,<br /><span class="accent">der Sie wirklich kennt.</span></h2>
-        <p class="body">Sie müssen heute nichts entscheiden. Erzählen Sie uns von Ihrem Unternehmen – und wir sagen Ihnen ehrlich, ob und wie wir helfen können.</p>
+<!-- ░░░ 9 · Anfrage ░░░ -->
+<section class="chapter chapter--contact" id="anfrage">
+  <div class="shell">
+    <header class="chapter-head">
+      <span class="chapter-no">08</span>
+      <span class="chapter-label reveal">Erstgespräch</span>
+    </header>
+    <h2 class="editorial reveal-lines">
+      <span class="line"><span>Vielleicht ist es Zeit für einen</span></span>
+      <span class="line"><span>Steuerberater,</span></span>
+      <span class="line gold-text italic"><span>der Sie wirklich kennt.</span></span>
+    </h2>
 
+    <div class="contact-grid">
+      <div class="contact-side reveal">
+        <p class="body">Sie müssen heute nichts entscheiden. Erzählen Sie uns von Ihrem Unternehmen — und wir sagen Ihnen ehrlich, ob und wie wir helfen können.</p>
         <div class="contact-quick">
-          <a href="tel:+43191333670" class="quick-row btn-call">
+          <a href="tel:+43191333670" class="quick-row" data-magnetic>
             <svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
             <span><strong>+43 1 913 3367-0</strong><br />Direkt anrufen</span>
           </a>
-          <a href="mailto:office@easytax.eu" class="quick-row">
-            <svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M3 5h18v14H3z" fill="none"/><path d="M4 6h16c.6 0 1 .4 1 1v10c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1zm0 2v.5l8 5 8-5V8l-8 5-8-5z"/></svg>
+          <a href="mailto:office@easytax.eu" class="quick-row" data-magnetic>
+            <svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M4 6h16c.6 0 1 .4 1 1v10c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1zm0 2v.5l8 5 8-5V8l-8 5-8-5z"/></svg>
             <span><strong>office@easytax.eu</strong><br />Veithgasse 6, 1030 Wien</span>
           </a>
         </div>
       </div>
 
-      <form class="request-form" id="requestForm" novalidate>
+      <form class="request-form glass reveal" id="requestForm" novalidate>
         <h3 class="form-title">Reservierungsanfrage</h3>
-
         <fieldset class="field-services">
           <legend>Welche Leistungen interessieren Sie?</legend>
           <div class="chip-grid">
@@ -378,36 +376,17 @@
             <label class="chip"><input type="checkbox" name="service" value="Insolvenzberatung" /><span>Insolvenzberatung</span></label>
           </div>
         </fieldset>
-
         <div class="field-row">
-          <label class="field">
-            <span class="field-label">Name *</span>
-            <input type="text" name="name" required autocomplete="name" placeholder="Ihr Name" />
-          </label>
-          <label class="field">
-            <span class="field-label">Unternehmen</span>
-            <input type="text" name="company" autocomplete="organization" placeholder="Optional" />
-          </label>
+          <label class="field"><span class="field-label">Name *</span><input type="text" name="name" required autocomplete="name" placeholder="Ihr Name" /></label>
+          <label class="field"><span class="field-label">Unternehmen</span><input type="text" name="company" autocomplete="organization" placeholder="Optional" /></label>
         </div>
-
         <div class="field-row">
-          <label class="field">
-            <span class="field-label">E-Mail *</span>
-            <input type="email" name="email" required autocomplete="email" placeholder="name@firma.at" />
-          </label>
-          <label class="field">
-            <span class="field-label">Telefon</span>
-            <input type="tel" name="phone" autocomplete="tel" placeholder="Für einen Rückruf" />
-          </label>
+          <label class="field"><span class="field-label">E-Mail *</span><input type="email" name="email" required autocomplete="email" placeholder="name@firma.at" /></label>
+          <label class="field"><span class="field-label">Telefon</span><input type="tel" name="phone" autocomplete="tel" placeholder="Für einen Rückruf" /></label>
         </div>
-
-        <label class="field">
-          <span class="field-label">Ihre Nachricht</span>
-          <textarea name="message" rows="4" placeholder="Erzählen Sie uns kurz von Ihrem Anliegen …"></textarea>
-        </label>
-
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Anfrage senden</button>
-        <p class="form-note" id="formNote">Ihre Anfrage geht direkt an office@easytax.eu · Betreff: „Anfrage von Webseite". Diskret &amp; unverbindlich.</p>
+        <label class="field"><span class="field-label">Ihre Nachricht</span><textarea name="message" rows="4" placeholder="Erzählen Sie uns kurz von Ihrem Anliegen …"></textarea></label>
+        <button type="submit" class="btn btn-foil btn-block" data-magnetic><span>Anfrage senden</span></button>
+        <p class="form-note">Ihre Anfrage geht direkt an office@easytax.eu · Betreff „Anfrage von Webseite“. Diskret &amp; unverbindlich.</p>
       </form>
     </div>
   </div>
@@ -417,43 +396,24 @@
 
 <!-- ░░░ Footer ░░░ -->
 <footer class="site-footer">
-  <div class="container footer-grid">
+  <div class="shell footer-grid">
     <div class="footer-brand">
-      <a href="#hero" class="brand brand--footer"><span class="brand-word"><span class="w-easy">easy</span><span class="w-tax">tax</span></span><img src="assets/img/easytax-runner.svg" alt="EasyTax Logo" class="brand-runner" width="56" height="56" /></a>
+      <a href="#hero" class="brand brand--footer"><span class="brand-word"><span class="w-easy">easy</span><span class="w-tax">tax</span></span><img src="assets/img/easytax-runner.svg" alt="EasyTax Logo" class="brand-runner" width="54" height="54" /></a>
       <p>Persönlich geführte Steuerberatung in Wien. Seit 1993 an der Seite von Unternehmern, Selbstständigen und Gründern.</p>
     </div>
-
-    <div class="footer-col">
-      <h4>Kontakt</h4>
-      <p><a href="tel:+43191333670">+43 1 913 3367-0</a></p>
-      <p class="muted">Fax: +43 1 913 3367-50</p>
-      <p><a href="mailto:office@easytax.eu">office@easytax.eu</a></p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Kanzlei</h4>
-      <p>Veithgasse 6<br />1030 Wien<br />Österreich</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Leistungen</h4>
-      <p><a href="#leistungen">Steuerberatung Wien</a></p>
-      <p><a href="#leistungen">Buchhaltung &amp; Lohnverrechnung</a></p>
-      <p><a href="#leistungen">Unternehmensgründung</a></p>
-    </div>
+    <div class="footer-col"><h4>Kontakt</h4><p><a href="tel:+43191333670">+43 1 913 3367-0</a></p><p class="muted">Fax: +43 1 913 3367-50</p><p><a href="mailto:office@easytax.eu">office@easytax.eu</a></p></div>
+    <div class="footer-col"><h4>Kanzlei</h4><p>Veithgasse 6<br />1030 Wien<br />Österreich</p></div>
+    <div class="footer-col"><h4>Leistungen</h4><p><a href="#leistungen">Steuerberatung Wien</a></p><p><a href="#leistungen">Buchhaltung &amp; Lohnverrechnung</a></p><p><a href="#leistungen">Unternehmensgründung</a></p></div>
   </div>
-  <div class="container footer-bottom">
+  <div class="shell footer-bottom">
     <p>© <span id="year"></span> EasyTax · Dr. Giangiacomo Bortoluzzi</p>
     <p class="muted">Steuerberatung · Buchhaltung · Lohnverrechnung · Wien</p>
   </div>
 </footer>
 
-<!-- ░░░ Floating call (mobile) ░░░ -->
 <a href="tel:+43191333670" class="fab-call" aria-label="Jetzt anrufen">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
 </a>
-
-<!-- Toast -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="assets/js/main.js"></script>
