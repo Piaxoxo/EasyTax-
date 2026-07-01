@@ -2,9 +2,12 @@ preview-*.png
 view-*.png
 upgrade-*.png
 v-*.png
+s-*.png
 _render.mjs
 _diag.mjs
 _probe.mjs
+_probe2.mjs
+_convert.mjs
 _shot.mjs
 *.log
 .DS_Store

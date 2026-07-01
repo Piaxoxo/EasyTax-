@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440">
+  <defs>
+    <path id="lf" d="M0 0 C 9 -13 9 -34 0 -46 C -9 -34 -9 -13 0 0 Z"/>
+  </defs>
+  <g fill="#100d08">
+    <!-- main stem -->
+    <path d="M40 400 C 200 360 380 270 600 70" stroke="#100d08" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- leaves along the branch (alternating) -->
+    <use href="#lf" transform="translate(120 372) rotate(-52) scale(1.05)"/>
+    <use href="#lf" transform="translate(150 360) rotate(128) scale(1.0)"/>
+    <use href="#lf" transform="translate(196 338) rotate(-46) scale(1.12)"/>
+    <use href="#lf" transform="translate(228 322) rotate(134) scale(1.0)"/>
+    <use href="#lf" transform="translate(276 296) rotate(-42) scale(1.16)"/>
+    <use href="#lf" transform="translate(312 276) rotate(138) scale(1.02)"/>
+    <use href="#lf" transform="translate(360 246) rotate(-38) scale(1.18)"/>
+    <use href="#lf" transform="translate(398 222) rotate(142) scale(1.04)"/>
+    <use href="#lf" transform="translate(446 188) rotate(-34) scale(1.16)"/>
+    <use href="#lf" transform="translate(484 160) rotate(146) scale(1.02)"/>
+    <use href="#lf" transform="translate(528 126) rotate(-30) scale(1.12)"/>
+    <use href="#lf" transform="translate(560 100) rotate(150) scale(0.98)"/>
+    <use href="#lf" transform="translate(596 72) rotate(-26) scale(1.0)"/>
+    <!-- olives -->
+    <ellipse cx="210" cy="330" rx="9" ry="12" transform="rotate(-30 210 330)"/>
+    <ellipse cx="392" cy="230" rx="9" ry="12" transform="rotate(-28 392 230)"/>
+  </g>
+</svg>

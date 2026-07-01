@@ -65,6 +65,13 @@
   var progress = document.querySelector(".scroll-progress");
   var monolith = document.querySelector("[data-monolith]");
   var parallaxEls = document.querySelectorAll("[data-parallax]:not([data-tilt])");
+
+  /* pinned photo scenes */
+  var scenes = [];
+  document.querySelectorAll("[data-scene]").forEach(function (el) {
+    scenes.push({ el: el, img: el.querySelector("[data-scene-img]"), panels: el.querySelectorAll(".scene-panel") });
+  });
+
   var ticking = false;
   function onScrollFrame() {
     var y = window.scrollY;
@@ -77,11 +84,23 @@
       monolith.style.transform = "translate3d(0," + (-y * 0.06).toFixed(1) + "px,0) rotate(" + (-9 + y * 0.0035).toFixed(2) + "deg)";
     }
     if (fx) {
+      var vh = window.innerHeight;
       parallaxEls.forEach(function (el) {
         var speed = parseFloat(el.getAttribute("data-parallax")) || 0.1;
         var r = el.getBoundingClientRect();
-        var off = (r.top + r.height / 2 - window.innerHeight / 2) * -speed;
+        var off = (r.top + r.height / 2 - vh / 2) * -speed;
         el.style.transform = "translate3d(0," + off.toFixed(1) + "px,0)";
+      });
+      scenes.forEach(function (s) {
+        var r = s.el.getBoundingClientRect();
+        var denom = r.height - vh;
+        var p = denom > 0 ? Math.min(Math.max(-r.top / denom, 0), 1) : 0;
+        if (s.img) s.img.style.transform = "scale(" + (1.06 + p * 0.16).toFixed(3) + ") translateY(" + (p * -4).toFixed(1) + "%)";
+        s.panels.forEach(function (pan) {
+          var from = parseFloat(pan.getAttribute("data-from")) || 0;
+          var to = parseFloat(pan.getAttribute("data-to")); if (isNaN(to)) to = 1.01;
+          if (p >= from && p < to) pan.classList.add("on"); else pan.classList.remove("on");
+        });
       });
     }
     ticking = false;
