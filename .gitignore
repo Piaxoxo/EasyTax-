@@ -3,3 +3,5 @@ view-*.png
 _render.mjs
 *.log
 .DS_Store
+upgrade-*.png
+_shot.mjs
