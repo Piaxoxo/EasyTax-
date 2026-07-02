@@ -29,7 +29,8 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fine   = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   var big    = window.matchMedia("(min-width: 861px)").matches;
-  var fx     = fine && big && !reduce;
+  var fx     = fine && big && !reduce;   // pointer-driven effects (cursor, magnet, tilt): desktop only
+  var motion = !reduce;                  // scroll-driven cinematic effects (scenes, panels): every device
   var lerp = function (a, b, n) { return a + (b - a) * n; };
 
   /* ---- Intro curtain ---- */
@@ -98,14 +99,16 @@
     if (fx && monolith) {
       monolith.style.transform = "translate3d(0," + (-y * 0.06).toFixed(1) + "px,0) rotate(" + (-9 + y * 0.0035).toFixed(2) + "deg)";
     }
+    var vh = window.innerHeight;
     if (fx) {
-      var vh = window.innerHeight;
       parallaxEls.forEach(function (el) {
         var speed = parseFloat(el.getAttribute("data-parallax")) || 0.1;
         var r = el.getBoundingClientRect();
         var off = (r.top + r.height / 2 - vh / 2) * -speed;
         el.style.transform = "translate3d(0," + off.toFixed(1) + "px,0)";
       });
+    }
+    if (motion) {
       scenes.forEach(function (s) {
         var r = s.el.getBoundingClientRect();
         var denom = r.height - vh;
@@ -124,7 +127,7 @@
   onScrollFrame();
 
   /* ---- Cursor light + magnetic + tilt (desktop, fine pointer) ---- */
-  if (fx) {
+  if (fx) { try {
     document.documentElement.classList.add("has-cursor");
     var dot = document.querySelector(".cursor");
     var glow = document.querySelector(".cursor-light");
@@ -174,7 +177,7 @@
       });
       el.addEventListener("pointerleave", function () { if (raf) cancelAnimationFrame(raf); el.style.transform = base; });
     });
-  }
+  } catch (ptrErr) { if (window.console && console.warn) console.warn("pointer fx skipped:", ptrErr); } }
 
   /* ---- Toast ---- */
   var toastEl = document.getElementById("toast"), toastTimer;
