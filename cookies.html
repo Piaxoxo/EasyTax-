@@ -11,10 +11,7 @@
   (function () { var h = document.documentElement; h.className += " js"; window.__etReady = false;
     setTimeout(function () { if (!window.__etReady) { h.className = h.className.replace(/\bjs\b/, ""); } }, 4500); })();
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" /></noscript>
+<link rel="stylesheet" href="assets/css/fonts.css" />
 <link rel="icon" type="image/svg+xml" href="assets/img/easytax-runner.svg" />
 <link rel="stylesheet" href="assets/css/styles.css" />
 <link rel="stylesheet" href="assets/css/legal.css" />
@@ -84,9 +81,8 @@
 
       <section class="legal-sec">
         <h2>Eingebundene Drittanbieter-Ressourcen</h2>
-        <h3>Schriftarten (Google Fonts)</h3>
-        <p>Zur Darstellung werden Schriftarten über Google Fonts geladen. Dabei kann Ihre IP-Adresse an Server von Google (Google Ireland Ltd. / Google LLC) übertragen werden. Es werden hierbei keine Cookies auf dieser Website gesetzt.</p>
-        <p class="legal-confirm">Empfehlung: Auf Wunsch stellen wir die Schriftarten auf lokales Hosting um, sodass keine Übertragung an Google erfolgt.</p>
+        <h3>Schriftarten</h3>
+        <p>Alle Schriftarten werden <strong>lokal von diesem Server</strong> ausgeliefert. Es erfolgt kein Abruf von Google Fonts oder anderen externen Anbietern und damit auch keine Übertragung Ihrer IP-Adresse an Dritte.</p>
         <h3>3D-Darstellung</h3>
         <p>Die immersive 3D-Darstellung nutzt eine lokal auf diesem Server bereitgestellte Bibliothek – es erfolgt kein Aufruf externer Anbieter und keine Datenübertragung an Dritte.</p>
       </section>
@@ -99,7 +95,7 @@
       <section class="legal-sec">
         <h2>Änderungen &amp; Kontakt</h2>
         <p>Diese Cookie-Richtlinie kann angepasst werden, wenn sich die eingesetzten Technologien ändern. Bei Fragen erreichen Sie uns unter <a href="mailto:office@easytax.eu">office@easytax.eu</a> oder <a href="tel:+43191333670">+43 (1) 913 3367-0</a>.</p>
-        <p class="legal-note">Eine ausführliche Datenschutzerklärung (DSGVO) ergänzen wir gerne separat – bitte kurz bestätigen, dann bauen wir sie im selben Stil.</p>
+        <p class="legal-note">Ausführliche Informationen zur Verarbeitung Ihrer Daten finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
       </section>
     </div>
 
@@ -115,12 +111,13 @@
     </div>
     <div class="footer-col"><h4>Kontakt</h4><p><a href="tel:+43191333670">+43 1 913 3367-0</a></p><p class="muted">Fax: +43 1 913 3367-50</p><p><a href="mailto:office@easytax.eu">office@easytax.eu</a></p></div>
     <div class="footer-col"><h4>Kanzlei</h4><p>Veithgasse 6<br />1030 Wien<br />Österreich</p></div>
-    <div class="footer-col"><h4>Rechtliches</h4><p><a href="impressum.html">Impressum</a></p><p><a href="cookies.html">Cookie-Richtlinie</a></p></div>
+    <div class="footer-col"><h4>Rechtliches</h4><p><a href="impressum.html">Impressum</a></p><p><a href="datenschutz.html">Datenschutz</a></p><p><a href="cookies.html">Cookie-Richtlinie</a></p></div>
   </div>
   <div class="shell footer-bottom">
     <div class="footer-legal">
-      <p>© <span id="year"></span> EasyTax · Dr. Giangiacomo Bortoluzzi</p>
+      <p>© <span id="year"></span> EASYTAX Steuerberatungsgesellschaft mbH</p>
       <span class="sep">·</span><a href="impressum.html">Impressum</a>
+      <span class="sep">·</span><a href="datenschutz.html">Datenschutz</a>
       <span class="sep">·</span><a href="cookies.html">Cookie-Richtlinie</a>
     </div>
     <p class="bandita-credit">powered by <a href="https://bandita-pink.vercel.app" target="_blank" rel="noopener">bandita marketing agency</a></p>
