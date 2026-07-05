@@ -10,31 +10,31 @@
 /* ---------- Fixed 3D world (behind everything) ---------- */
 .svc-world { position: fixed; inset: 0; z-index: 0; overflow: hidden;
   background:
-    radial-gradient(120% 90% at 30% 20%, #f6f1e7 0%, #ece4d6 38%, #d9cdb8 70%, #c3b49a 100%);
-  transition: background 1.6s cubic-bezier(.5,0,.1,1);
+    radial-gradient(135% 105% at 50% 4%, #fcf9f2 0%, #f4eee3 46%, #ece3d4 100%);
+  transition: background 2.4s cubic-bezier(.5,0,.1,1);
 }
 .svc-world #svcCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .svc-world-fallback { position: absolute; inset: 0; opacity: 0; pointer-events: none;
-  background: radial-gradient(80% 60% at 30% 45%, rgba(255,255,255,.5), transparent 70%);
+  background: radial-gradient(80% 60% at 50% 35%, rgba(255,255,255,.6), transparent 72%);
   transition: opacity 1.2s; }
 html:not(.js) .svc-world { background:
-  linear-gradient(160deg, #f4eee3 0%, #e6dcc9 55%, #cdbfa4 100%); }
+  linear-gradient(180deg, #fbf7f0 0%, #f1ebdf 60%, #e8dfd0 100%); }
 html:not(.js) .svc-world-fallback { opacity: 1; }
 
-/* Atmosphere shift per chapter (JS toggles data-atmo on <html>) */
-html[data-atmo="a1"] .svc-world { background: radial-gradient(120% 90% at 28% 22%, #f7f2e9, #e9e0d0 44%, #cfc0a6 100%); }
-html[data-atmo="a2"] .svc-world { background: radial-gradient(120% 90% at 34% 24%, #f4efe7, #e4d9c6 46%, #c8b99e 100%); }
-html[data-atmo="a3"] .svc-world { background: radial-gradient(120% 90% at 30% 20%, #f8f1e0, #ecdfbf 46%, #d3c096 100%); }
-html[data-atmo="a4"] .svc-world { background: radial-gradient(120% 90% at 26% 24%, #eef0ea, #dfe1d2 46%, #c2c1a4 100%); }
-html[data-atmo="a5"] .svc-world { background: radial-gradient(120% 90% at 32% 22%, #f6f1e8, #e7ddc9 46%, #cdbd9d 100%); }
-html[data-atmo="a6"] .svc-world { background: radial-gradient(120% 90% at 30% 26%, #efe7db, #d9cbb4 48%, #b3a488 100%); }
-html[data-atmo="a7"] .svc-world { background: radial-gradient(120% 90% at 34% 22%, #f1eee8, #ddd8ca 48%, #bdb69c 100%); }
-html[data-atmo="a8"] .svc-world { background: radial-gradient(120% 90% at 28% 30%, #eae3d5, #d2c4ad 50%, #b0a084 100%); }
+/* Atmosphere shift per chapter — all bright, only a whisper of warmth apart */
+html[data-atmo="a1"] .svc-world { background: radial-gradient(135% 105% at 48% 4%, #fdfaf4, #f4eee2 48%, #ece2d2 100%); }
+html[data-atmo="a2"] .svc-world { background: radial-gradient(135% 105% at 52% 5%, #fbf8f1, #f2ece0 48%, #e9e0cf 100%); }
+html[data-atmo="a3"] .svc-world { background: radial-gradient(135% 105% at 46% 4%, #fdfbf3, #f4eddc 48%, #eee2cb 100%); }
+html[data-atmo="a4"] .svc-world { background: radial-gradient(135% 105% at 50% 6%, #fafbf5, #edefe3 48%, #e4e5d5 100%); }
+html[data-atmo="a5"] .svc-world { background: radial-gradient(135% 105% at 50% 4%, #fcf9f2, #f3ece0 48%, #eae0cf 100%); }
+html[data-atmo="a6"] .svc-world { background: radial-gradient(135% 105% at 48% 6%, #fbf7ef, #efe6d6 48%, #e6dcc7 100%); }
+html[data-atmo="a7"] .svc-world { background: radial-gradient(135% 105% at 52% 4%, #fafaf4, #eeeade 48%, #e6e0d0 100%); }
+html[data-atmo="a8"] .svc-world { background: radial-gradient(135% 105% at 48% 7%, #fbf8f0, #efe6d6 48%, #e6dccb 100%); }
 
 .svc-vignette { position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(120% 120% at 70% 30%, transparent 40%, rgba(30,24,14,.16) 100%),
-    linear-gradient(180deg, rgba(255,255,255,.10), transparent 20%, transparent 78%, rgba(30,24,14,.14)); }
+    radial-gradient(130% 130% at 60% 16%, transparent 60%, rgba(70,56,32,.08) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.16), transparent 16%, transparent 84%, rgba(70,56,32,.06)); }
 
 /* soft cursor light */
 .svc-light { position: absolute; top: 0; left: 0; width: 46vmax; height: 46vmax; margin: -23vmax 0 0 -23vmax;
@@ -42,8 +42,8 @@ html[data-atmo="a8"] .svc-world { background: radial-gradient(120% 90% at 28% 30
   background: radial-gradient(circle, rgba(255,247,225,.9), rgba(255,240,205,.25) 40%, transparent 68%);
   transform: translate3d(50vw, 40vh, 0); transition: opacity .6s; will-change: transform; }
 
-/* drifting dust */
-.svc-dust { position: absolute; inset: 0; pointer-events: none; opacity: .5;
+/* drifting dust (very subtle — the 3D world carries its own marble dust) */
+.svc-dust { position: absolute; inset: 0; pointer-events: none; opacity: .28;
   background-image:
     radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,250,235,.9), transparent 60%),
     radial-gradient(1.5px 1.5px at 70% 60%, rgba(255,250,235,.7), transparent 60%),
