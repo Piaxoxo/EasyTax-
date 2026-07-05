@@ -1,0 +1,217 @@
+/* ============================================================
+   EasyTax · Unternehmensanalyse + Kanzlei-Assistent
+   Quiet-Luxury. Nutzt die Design-Tokens aus styles.css.
+   Prefix .eta- damit nichts Bestehendes überschrieben wird.
+   ============================================================ */
+
+/* ---------- Overlay / Stage ---------- */
+html.eta-lock { overflow: hidden; }
+
+.eta-overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+  opacity: 0; transition: opacity .55s var(--e2); }
+.eta-overlay.eta-open { opacity: 1; }
+.eta-backdrop { position: absolute; inset: 0; background: rgba(239,233,223,.66);
+  backdrop-filter: blur(22px) saturate(130%); -webkit-backdrop-filter: blur(22px) saturate(130%); }
+
+.eta-stage { position: relative; width: min(93vw, 760px); max-height: 92vh; overflow-y: auto; overflow-x: hidden;
+  padding: clamp(26px, 4vw, 52px);
+  background: rgba(255,255,255,.72); backdrop-filter: blur(24px) saturate(135%); -webkit-backdrop-filter: blur(24px) saturate(135%);
+  border: 1px solid var(--glass-brd); border-radius: 24px; box-shadow: var(--shadow-lux);
+  transform: translateY(24px) scale(.985); transition: transform .7s var(--e1), opacity .5s var(--e2); }
+.eta-overlay.eta-open .eta-stage { transform: none; }
+.eta-stage::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(140deg, rgba(255,255,255,.95), transparent 42%, rgba(176,137,62,.22));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.eta-stage::after { content: ""; position: absolute; left: -20%; top: -30%; width: 60%; height: 60%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(255,255,255,.6), transparent 70%); mix-blend-mode: soft-light;
+  animation: etaSheen 16s var(--e2) infinite alternate; }
+@keyframes etaSheen { to { transform: translate3d(120%, 40%, 0); } }
+
+.eta-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.eta-brandline { font-size: .68rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; }
+.eta-close { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255,255,255,.6);
+  color: var(--ink); display: grid; place-items: center; cursor: pointer; transition: background .3s, border-color .3s, transform .3s var(--e2); }
+.eta-close svg { width: 18px; height: 18px; }
+.eta-close:hover { background: #fff; border-color: var(--hair); transform: rotate(90deg); }
+
+.eta-progress { height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; margin-bottom: clamp(22px, 3vw, 34px); }
+.eta-bar { display: block; height: 100%; width: 100%; transform-origin: left; transform: scaleX(.02);
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-hi)); transition: transform .7s var(--e2); }
+
+/* ---------- View transitions (mask-reveal) ---------- */
+.eta-view { transition: opacity .3s var(--e2); }
+.eta-view.eta-out { opacity: 0; }
+.eta-screen > * { opacity: 0; transform: translateY(14px); transition: opacity .7s var(--e2), transform .8s var(--e1); }
+.eta-view.eta-in .eta-screen > * { opacity: 1; transform: none; }
+.eta-view.eta-in .eta-screen > *:nth-child(2) { transition-delay: .06s; }
+.eta-view.eta-in .eta-screen > *:nth-child(3) { transition-delay: .12s; }
+.eta-view.eta-in .eta-screen > *:nth-child(4) { transition-delay: .18s; }
+.eta-view.eta-in .eta-screen > *:nth-child(5) { transition-delay: .24s; }
+.eta-view.eta-in .eta-screen > *:nth-child(6) { transition-delay: .30s; }
+
+/* ---------- Typography ---------- */
+.eta-eyebrow { font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; margin-bottom: 16px; }
+.eta-title { font-family: var(--serif); font-weight: 600; line-height: 1.08; letter-spacing: -.01em; color: var(--ink);
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem); max-width: 22ch; }
+.eta-title--sm { font-size: clamp(1.4rem, 2.6vw, 2rem); }
+.eta-q { font-family: var(--serif); font-weight: 600; line-height: 1.1; letter-spacing: -.01em; color: var(--ink);
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem); margin-bottom: 26px; max-width: 20ch; }
+.eta-lede { color: var(--soft); font-size: 1.06rem; margin-top: 18px; max-width: 46ch; }
+.eta-note, .eta-privacy { color: var(--mute); font-size: .82rem; margin-top: 16px; }
+.eta-privacy { border-top: 1px solid var(--line-2); padding-top: 14px; }
+.eta-resulttext { color: var(--soft); font-size: 1.04rem; margin: 18px 0 6px; max-width: 52ch; }
+.eta-mini { color: var(--mute); font-size: .84rem; margin-top: 16px; }
+
+.eta-qhead { display: flex; align-items: baseline; gap: 16px; margin-bottom: 14px; }
+.eta-step { font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; }
+.eta-hint { font-size: .82rem; color: var(--mute); }
+.eta-hint--soft { color: var(--mute); }
+
+/* ---------- Options ---------- */
+.eta-opts { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 620px) { .eta-opts { grid-template-columns: 1fr 1fr; } }
+.eta-opt { display: flex; align-items: center; justify-content: space-between; gap: 14px; text-align: left;
+  padding: 17px 20px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.55);
+  color: var(--ink); font-family: var(--sans); font-size: 1.02rem; cursor: pointer;
+  transition: transform .4s var(--e2), box-shadow .4s var(--e2), border-color .3s, background .3s; }
+.eta-opt:hover { transform: translateY(-2px); border-color: var(--hair); background: #fff; box-shadow: 0 18px 40px -24px rgba(70,55,30,.5); }
+.eta-opt-mark { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--line); flex-shrink: 0; position: relative; transition: border-color .3s, background .3s; }
+.eta-opt-mark::after { content: ""; position: absolute; inset: 0; margin: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--gold-deep); transform: scale(0); transition: transform .3s var(--e2); }
+.eta-opt.is-sel { border-color: var(--gold); background: #fff; box-shadow: 0 0 0 1px rgba(176,137,62,.3) inset; }
+.eta-opt.is-sel .eta-opt-mark { border-color: var(--gold); }
+.eta-opt.is-sel .eta-opt-mark::after { transform: scale(1); }
+.eta-opt:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.eta-nav { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 28px; }
+.eta-link { background: none; border: 0; color: var(--soft); font-family: var(--sans); font-size: .92rem; cursor: pointer; padding: 6px 2px; transition: color .3s; }
+.eta-link:hover { color: var(--gold-deep); }
+.eta-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- Buttons ---------- */
+.eta-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.eta-btn { position: relative; display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 500;
+  font-size: .96rem; padding: 15px 26px; border-radius: 100px; border: 1px solid transparent; cursor: pointer; text-decoration: none;
+  transition: transform .4s var(--e2), box-shadow .4s var(--e2), border-color .3s, background .3s, color .3s; }
+.eta-btn--sm { padding: 11px 20px; font-size: .9rem; }
+.eta-btn:hover { transform: translateY(-2px); }
+.eta-btn--primary { background: linear-gradient(150deg, #2c2820, #14110c); color: #f3ede1; border-color: rgba(176,137,62,.32); box-shadow: 0 16px 34px -18px rgba(20,17,12,.7); }
+.eta-btn--primary:hover { border-color: var(--gold); box-shadow: 0 24px 46px -20px rgba(20,17,12,.6); }
+.eta-btn--primary:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.eta-btn--ghost { background: rgba(255,255,255,.6); border-color: var(--line); color: var(--ink); }
+.eta-btn--ghost:hover { background: #fff; border-color: var(--hair); }
+.eta-btn--line { background: transparent; border-color: var(--line); color: var(--ink); }
+.eta-btn--line:hover { border-color: var(--gold); color: var(--gold-deep); }
+.eta-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ---------- Result cards (leichte 3D-Perspektive) ---------- */
+.eta-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 24px 0 6px; perspective: 900px; }
+.eta-card { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 14px;
+  background: rgba(255,255,255,.6); border: 1px solid var(--line); color: var(--ink); font-size: .98rem;
+  transform: rotateX(6deg) translateY(6px); opacity: 0; animation: etaCard .7s var(--e1) forwards; animation-delay: calc(var(--i) * .09s + .1s); box-shadow: 0 20px 40px -30px rgba(70,55,30,.5); }
+@keyframes etaCard { to { transform: none; opacity: 1; } }
+.eta-card-dot { width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f0dba6, var(--gold) 60%, var(--gold-deep)); flex-shrink: 0; }
+.eta-primary { margin: 24px 0 8px; }
+
+/* ---------- Assistant hand-off block ---------- */
+.eta-assist { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line-2); }
+.eta-assist-h { font-family: var(--serif); font-size: 1.2rem; color: var(--gold-deep); }
+.eta-assist-s { color: var(--soft); font-size: .98rem; margin: 4px 0 16px; }
+.eta-contactrow { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.eta-contactcards { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+@media (min-width: 620px) { .eta-contactcards { grid-template-columns: 1fr 1fr 1fr; } }
+.eta-cc { display: flex; flex-direction: column; gap: 4px; padding: 20px; border-radius: 16px; text-align: left; text-decoration: none;
+  background: rgba(255,255,255,.6); border: 1px solid var(--line); color: var(--ink); cursor: pointer;
+  transition: transform .4s var(--e2), box-shadow .4s var(--e2), border-color .3s, background .3s; }
+.eta-cc:hover { transform: translateY(-3px); border-color: var(--hair); background: #fff; box-shadow: 0 24px 46px -26px rgba(70,55,30,.5); }
+.eta-cc-h { font-family: var(--serif); font-size: 1.15rem; }
+.eta-cc-s { color: var(--soft); font-size: .86rem; }
+.eta-cc:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ---------- Email form ---------- */
+.eta-field { display: flex; flex-direction: column; gap: 7px; margin-top: 18px; }
+.eta-flabel { font-size: .84rem; color: var(--soft); }
+.eta-input { font-family: var(--sans); font-size: 1rem; color: var(--ink); padding: 14px 16px; border-radius: 12px;
+  background: rgba(255,255,255,.72); border: 1px solid var(--line); transition: border-color .3s, box-shadow .3s, background .3s; resize: vertical; }
+.eta-input::placeholder { color: var(--mute); }
+.eta-input:focus { outline: none; border-color: var(--gold); background: #fff; box-shadow: 0 0 0 4px rgba(176,137,62,.13); }
+
+/* ---------- Floating assistant button ---------- */
+.eta-fab { position: fixed; right: 22px; bottom: 22px; z-index: 980; display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 18px 12px 14px; border-radius: 100px; cursor: pointer;
+  background: rgba(255,255,255,.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-brd); box-shadow: 0 18px 40px -20px rgba(70,55,30,.55);
+  transition: transform .45s var(--e2), box-shadow .45s var(--e2), border-color .3s; }
+.eta-fab:hover { transform: translateY(-3px); border-color: var(--hair); box-shadow: 0 26px 54px -22px rgba(70,55,30,.55); }
+.eta-fab:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.eta-fab-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+  background: radial-gradient(circle at 35% 30%, #f0dba6, var(--gold) 60%, var(--gold-deep));
+  box-shadow: 0 0 0 0 rgba(176,137,62,.5); animation: etaPulse 3s var(--e2) infinite; }
+@keyframes etaPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(176,137,62,.4); } 50% { box-shadow: 0 0 0 7px rgba(176,137,62,0); } }
+.eta-fab-label { font-family: var(--sans); font-weight: 500; font-size: .9rem; color: var(--ink); white-space: nowrap; }
+.eta-fab.is-active { border-color: var(--gold); }
+
+/* keep the existing phone FAB from overlapping (mobile) */
+html.eta-has-assistant .fab-call { bottom: 92px; }
+
+/* ---------- Assistant panel ---------- */
+.eta-panel { position: fixed; right: 22px; bottom: 82px; z-index: 990; width: min(92vw, 360px);
+  background: rgba(255,255,255,.82); backdrop-filter: blur(24px) saturate(135%); -webkit-backdrop-filter: blur(24px) saturate(135%);
+  border: 1px solid var(--glass-brd); border-radius: 20px; box-shadow: var(--shadow-lux); padding: 20px;
+  opacity: 0; transform: translateY(16px) scale(.98); transform-origin: bottom right; transition: opacity .4s var(--e2), transform .5s var(--e1); }
+.eta-panel.is-open { opacity: 1; transform: none; }
+.eta-panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.eta-panel-h { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); }
+.eta-panel-s { color: var(--soft); font-size: .84rem; margin-top: 2px; }
+.eta-panel-x { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255,255,255,.6); color: var(--ink); display: grid; place-items: center; cursor: pointer; flex-shrink: 0; transition: background .3s, transform .3s var(--e2); }
+.eta-panel-x svg { width: 16px; height: 16px; }
+.eta-panel-x:hover { background: #fff; transform: rotate(90deg); }
+.eta-panel-opts { display: flex; flex-direction: column; gap: 8px; }
+.eta-po { display: flex; flex-direction: column; gap: 2px; text-align: left; text-decoration: none; padding: 13px 15px; border-radius: 13px;
+  background: rgba(255,255,255,.5); border: 1px solid var(--line); color: var(--ink); cursor: pointer;
+  transition: transform .35s var(--e2), border-color .3s, background .3s; }
+.eta-po:hover { transform: translateX(3px); border-color: var(--hair); background: #fff; }
+.eta-po:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.eta-po-h { font-weight: 500; font-size: .96rem; }
+.eta-po-s { color: var(--soft); font-size: .8rem; }
+.eta-panel-info { margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line-2); }
+.eta-panel-info p { color: var(--soft); font-size: .9rem; margin-bottom: 8px; }
+.eta-panel-info-note { color: var(--mute); font-size: .82rem; }
+.eta-panel-info-cta { display: flex; gap: 8px; margin-top: 10px; }
+
+/* ---------- Nudge ---------- */
+.eta-nudge { position: fixed; right: 22px; bottom: 84px; z-index: 985; width: min(84vw, 280px);
+  background: rgba(255,255,255,.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-brd); border-radius: 16px; box-shadow: var(--shadow-lux); padding: 16px 18px;
+  opacity: 0; transform: translateY(12px); transition: opacity .5s var(--e2), transform .6s var(--e1); }
+.eta-nudge.is-show { opacity: 1; transform: none; }
+.eta-nudge p { color: var(--ink); font-size: .92rem; margin: 2px 26px 12px 0; }
+.eta-nudge-x { position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: none; color: var(--mute); display: grid; place-items: center; cursor: pointer; }
+.eta-nudge-x svg { width: 15px; height: 15px; }
+.eta-nudge-x:hover { color: var(--ink); }
+
+/* ---------- Mobile fullscreen ---------- */
+@media (max-width: 620px) {
+  .eta-stage { width: 100vw; height: 100vh; max-height: 100vh; border-radius: 0; padding: 24px 22px calc(24px + env(safe-area-inset-bottom)); }
+  .eta-overlay.eta-open .eta-stage { transform: none; }
+  .eta-cards { grid-template-columns: 1fr; }
+  .eta-fab { right: 16px; bottom: 16px; padding: 12px; }
+  .eta-fab-label { display: none; }
+  .eta-panel { right: 12px; left: 12px; width: auto; bottom: 78px; }
+  .eta-nudge { right: 12px; left: 12px; width: auto; bottom: 78px; }
+  html.eta-has-assistant .fab-call { bottom: 84px; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .eta-overlay, .eta-stage, .eta-view, .eta-screen > *, .eta-panel, .eta-nudge, .eta-btn, .eta-opt, .eta-cc, .eta-po { transition: none !important; animation: none !important; }
+  .eta-screen > * { opacity: 1 !important; transform: none !important; }
+  .eta-card { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .eta-stage::after, .eta-fab-dot { animation: none !important; }
+}
+
+/* ---------- Inline CTAs on the page (services / contact) ---------- */
+.eta-inline-cta { text-align: center; margin-top: clamp(44px, 6vw, 78px); }
+.contact-analyse { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 26px 0 30px; }
+.contact-analyse-s { color: var(--soft); font-size: .92rem; max-width: 22ch; }
+@media (max-width: 560px) { .contact-analyse { gap: 10px; } .contact-analyse .btn { width: 100%; justify-content: center; } }

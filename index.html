@@ -38,6 +38,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" /></noscript>
 <link rel="icon" type="image/svg+xml" href="assets/img/easytax-runner.svg" />
 <link rel="stylesheet" href="assets/css/styles.css" />
+<link rel="stylesheet" href="assets/css/assistant.css" />
 
 <script type="application/ld+json">
 {
@@ -112,6 +113,7 @@
     <div class="hero-foot">
       <p class="hero-lede reveal">Die Steuerberatung in Wien für Unternehmer, die nicht verwaltet, sondern begleitet werden wollen. Persönlich geführt von Dr. Giangiacomo Bortoluzzi.</p>
       <div class="hero-actions reveal">
+        <button type="button" class="btn btn-foil" data-open-analysis data-magnetic><span>Unternehmensanalyse starten</span></button>
         <a href="#anfrage" class="btn btn-ink" data-magnetic><span>Erstgespräch vereinbaren</span></a>
         <a href="tel:+43191333670" class="btn btn-line" data-magnetic><span>+43 1 913 3367-0</span></a>
       </div>
@@ -228,6 +230,9 @@
           <li data-service="Insolvenzberatung"><span class="s-no">11</span><span class="s-name">Insolvenzberatung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
         </ul>
       </div>
+    </div>
+    <div class="eta-inline-cta reveal">
+      <button type="button" class="btn btn-line" data-open-analysis data-magnetic><span>Welche Leistung passt zu mir?</span></button>
     </div>
   </div>
 </section>
@@ -395,6 +400,10 @@
     <div class="contact-grid">
       <div class="contact-side reveal">
         <p class="body">Sie müssen heute nichts entscheiden. Erzählen Sie uns von Ihrem Unternehmen — und wir sagen Ihnen ehrlich, ob und wie wir helfen können.</p>
+        <div class="contact-analyse">
+          <button type="button" class="btn btn-foil" data-open-analysis data-magnetic><span>Analyse starten</span></button>
+          <span class="contact-analyse-s">In wenigen Schritten zur passenden Betreuung.</span>
+        </div>
         <div class="contact-quick">
           <a href="tel:+43191333670" class="quick-row" data-magnetic>
             <svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
@@ -466,5 +475,11 @@
 <script defer src="assets/js/ambient.js"></script>
 <script defer src="assets/vendor/three.min.js"></script>
 <script defer src="assets/js/scene3d.js"></script>
+
+<!-- Premium-Feature: Unternehmensanalyse + Digitaler Kanzlei-Assistent -->
+<script defer src="assets/js/contact-utils.js"></script>
+<script defer src="assets/js/analysis-data.js"></script>
+<script defer src="assets/js/business-analysis.js"></script>
+<script defer src="assets/js/kanzlei-assistant.js"></script>
 </body>
 </html>
