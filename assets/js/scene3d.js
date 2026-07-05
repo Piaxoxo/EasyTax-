@@ -1,10 +1,10 @@
 /* ============================================================
-   EasyTax · Real 3D world (three.js)
-   A calm floating marble landscape in soft mist. The camera glides
-   through it as you scroll; pale monoliths drift and turn, sparse
-   champagne-gold rings catch the light. Studio lighting + gradient
-   environment for real reflections. Ivory fog dissolves distance so
-   the world reads as quiet depth behind the editorial content.
+   EasyTax · Real 3D world (three.js) — calm marble colonnade
+   A quiet gallery of white Carrara columns in soft morning light.
+   The camera glides slowly forward as you scroll, as if walking
+   through a museum. A few marble slabs and arches float almost
+   weightlessly; sparse champagne-gold rings catch the light. All
+   bright, airy, elegant — a background behind the editorial content.
 
    Graceful degradation:
      three.js + WebGL ok   -> full 3D world
@@ -36,20 +36,20 @@
     renderer.setClearAlpha(0);
     if (THREE.SRGBColorSpace) renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.06;
+    renderer.toneMappingExposure = 1.1;
 
     var scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0xece5d8, 0.028);
+    scene.fog = new THREE.FogExp2(0xf2ecdf, 0.021);   // bright ivory mist, gentle
 
-    var camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 220);
-    camera.position.set(0, 0, 16);
+    var camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 240);
+    camera.position.set(0, 0.6, 16);
 
-    /* soft studio environment (vertical gradient) → reflections & sheen */
+    /* soft warm studio environment → reflections & marble sheen */
     (function () {
       var c = document.createElement("canvas"); c.width = 8; c.height = 64;
       var x = c.getContext("2d");
       var g = x.createLinearGradient(0, 0, 0, 64);
-      g.addColorStop(0, "#fdf9f1"); g.addColorStop(0.55, "#eee6d6"); g.addColorStop(1, "#c7bba4");
+      g.addColorStop(0, "#fffdf6"); g.addColorStop(0.55, "#f1eadd"); g.addColorStop(1, "#d3c8b3");
       x.fillStyle = g; x.fillRect(0, 0, 8, 64);
       var tex = new THREE.CanvasTexture(c);
       tex.mapping = THREE.EquirectangularReflectionMapping;
@@ -59,44 +59,74 @@
       tex.dispose(); pm.dispose();
     })();
 
-    scene.add(new THREE.HemisphereLight(0xfff7ea, 0x968b78, 1.1));
-    var key = new THREE.DirectionalLight(0xfff1dc, 1.45); key.position.set(6, 10, 8); scene.add(key);
-    var rim = new THREE.DirectionalLight(0xcdac72, 0.5); rim.position.set(-8, -3, -7); scene.add(rim);
+    scene.add(new THREE.HemisphereLight(0xfff7ea, 0xb7ac96, 1.15));
+    var key = new THREE.DirectionalLight(0xfff2dd, 1.5); key.position.set(7, 11, 6); scene.add(key);
+    var rim = new THREE.DirectionalLight(0xd6b98a, 0.4); rim.position.set(-8, 2, -7); scene.add(rim);
 
-    var marbleA = new THREE.MeshStandardMaterial({ color: 0xf1ece2, roughness: 0.72, metalness: 0.0 });
-    var marbleB = new THREE.MeshStandardMaterial({ color: 0xe7e0d1, roughness: 0.86, metalness: 0.0 });
-    var gold    = new THREE.MeshStandardMaterial({ color: 0xC9A96A, roughness: 0.25, metalness: 1.0 });
-
-    var geos = [
-      new THREE.BoxGeometry(1, 2.6, 1),
-      new THREE.BoxGeometry(1.7, 1.0, 0.6),
-      new THREE.IcosahedronGeometry(0.95, 0),
-      new THREE.BoxGeometry(0.7, 3.4, 0.7)
-    ];
-    var ringGeo = new THREE.TorusGeometry(0.95, 0.055, 12, 46);
+    var marbleA = new THREE.MeshStandardMaterial({ color: 0xf3ede2, roughness: 0.5, metalness: 0.0, envMapIntensity: 0.85 });
+    var marbleB = new THREE.MeshStandardMaterial({ color: 0xece4d5, roughness: 0.62, metalness: 0.0, envMapIntensity: 0.8 });
+    var gold    = new THREE.MeshStandardMaterial({ color: 0xC9A96A, roughness: 0.26, metalness: 1.0, envMapIntensity: 1.1 });
 
     var group = new THREE.Group(); scene.add(group);
     var items = [];
     var seed = 20240705; function rnd() { seed = (seed * 1664525 + 1013904223) & 0x7fffffff; return seed / 0x7fffffff; }
 
-    var N = small ? 15 : 24;
-    var STEP = small ? 5.6 : 6.4;
-    for (var i = 0; i < N; i++) {
-      var mesh;
-      if (rnd() < 0.15) {
-        mesh = new THREE.Mesh(ringGeo, gold);
-      } else {
-        mesh = new THREE.Mesh(geos[(rnd() * geos.length) | 0], rnd() < 0.5 ? marbleA : marbleB);
-      }
-      var ang = rnd() * Math.PI * 2, rad = 4.2 + rnd() * 7.5;
-      mesh.position.set(Math.cos(ang) * rad, (rnd() - 0.5) * 11, 7 - i * STEP - rnd() * 3);
-      mesh.scale.setScalar(0.7 + rnd() * 1.8);
-      mesh.rotation.set(rnd() * Math.PI, rnd() * Math.PI, rnd() * Math.PI);
-      mesh.userData = { rx: (rnd() - 0.5) * 0.05, ry: (rnd() - 0.5) * 0.07, ph: rnd() * Math.PI * 2, amp: 0.15 + rnd() * 0.4, y0: mesh.position.y };
-      group.add(mesh); items.push(mesh);
+    /* ---- colonnade: two rows of columns receding into the mist ---- */
+    var shaftGeo = new THREE.CylinderGeometry(0.34, 0.4, 6.2, small ? 14 : 20, 1, true);
+    var baseGeo = new THREE.BoxGeometry(0.9, 0.4, 0.9);
+    var capGeo = new THREE.BoxGeometry(1.0, 0.4, 1.0);
+    var PER_SIDE = small ? 6 : 9, GAP = 7.2;
+    function column(x, z) {
+      var g = new THREE.Group();
+      var mat = rnd() < 0.5 ? marbleA : marbleB;
+      var shaft = new THREE.Mesh(shaftGeo, mat); shaft.position.y = 0; g.add(shaft);
+      var base = new THREE.Mesh(baseGeo, marbleB); base.position.y = -3.3; g.add(base);
+      var cap = new THREE.Mesh(capGeo, marbleA); cap.position.y = 3.3; g.add(cap);
+      g.position.set(x, -1.5 + (rnd() - 0.5) * 0.6, z);
+      g.userData = { y0: g.position.y, ph: rnd() * Math.PI * 2, amp: 0.1 + rnd() * 0.12 };
+      group.add(g); items.push(g);
+    }
+    for (var s = 0; s < PER_SIDE; s++) {
+      var z = 6 - s * GAP;
+      column(-5.6 - (rnd() - 0.5) * 0.6, z);
+      column(5.6 + (rnd() - 0.5) * 0.6, z);
     }
 
-    var FLY = N * STEP * 0.52; // how far the camera travels through the field
+    /* ---- a few floating marble slabs (very subtle, high/far) ---- */
+    var slabGeo = new THREE.BoxGeometry(3.4, 0.28, 2.2);
+    for (var q = 0; q < (small ? 2 : 4); q++) {
+      var slab = new THREE.Mesh(slabGeo, rnd() < 0.5 ? marbleA : marbleB);
+      slab.position.set((rnd() - 0.5) * 7, 3.5 + rnd() * 3, -6 - q * 12 - rnd() * 4);
+      slab.rotation.set((rnd() - 0.5) * 0.3, rnd() * Math.PI, (rnd() - 0.5) * 0.2);
+      slab.userData = { y0: slab.position.y, ph: rnd() * Math.PI * 2, amp: 0.14 + rnd() * 0.2, rot: (rnd() - 0.5) * 0.02 };
+      group.add(slab); items.push(slab);
+    }
+
+    /* ---- two arches far back ---- */
+    var archGeo = new THREE.TorusGeometry(2.4, 0.28, 10, 40, Math.PI);
+    for (var w = 0; w < 2; w++) {
+      var arch = new THREE.Mesh(archGeo, marbleA);
+      arch.position.set((w ? 1 : -1) * 2.2, -1.4, -34 - w * 20);
+      arch.userData = { y0: arch.position.y, ph: rnd() * Math.PI * 2, amp: 0.1 };
+      group.add(arch); items.push(arch);
+    }
+
+    /* ---- sparse champagne-gold rings ---- */
+    var ringGeo = new THREE.TorusGeometry(0.9, 0.05, 12, 44);
+    for (var r = 0; r < 3; r++) {
+      var ring = new THREE.Mesh(ringGeo, gold);
+      ring.position.set((rnd() - 0.5) * 9, (rnd() - 0.4) * 5, -10 - r * 16 - rnd() * 6);
+      ring.rotation.set(rnd() * Math.PI, rnd() * Math.PI, 0);
+      ring.userData = { y0: ring.position.y, ph: rnd() * Math.PI * 2, amp: 0.2 + rnd() * 0.2, rot: (rnd() - 0.5) * 0.015 };
+      group.add(ring); items.push(ring);
+    }
+
+    /* ---- soft marble floor (grounds the colonnade) ---- */
+    var floor = new THREE.Mesh(new THREE.PlaneGeometry(120, 120),
+      new THREE.MeshStandardMaterial({ color: 0xefe8db, roughness: 0.4, metalness: 0.0, envMapIntensity: 0.9 }));
+    floor.rotation.x = -Math.PI / 2; floor.position.y = -4.9; group.add(floor);
+
+    var FLY = PER_SIDE * GAP * 0.62;   // how far the camera drifts forward
     var scr = 0, tScr = 0, ptx = 0, pty = 0, tptx = 0, tpty = 0;
 
     function onResize() {
@@ -106,25 +136,26 @@
     window.addEventListener("resize", onResize, { passive: true });
 
     function draw(t) {
-      ptx += (tptx - ptx) * 0.045; pty += (tpty - pty) * 0.045;
-      scr += (tScr - scr) * 0.06;
-      camera.position.x += (ptx * 3.2 - camera.position.x) * 0.06;
-      camera.position.y += (pty * 2.0 - camera.position.y) * 0.06;
+      // slow, frame-rate-agnostic-ish easing (calm)
+      ptx += (tptx - ptx) * 0.03; pty += (tpty - pty) * 0.03;
+      scr += (tScr - scr) * 0.04;
+      camera.position.x += (ptx * 2.2 - camera.position.x) * 0.035;
+      camera.position.y += (0.6 + pty * 1.2 - camera.position.y) * 0.035;
       camera.position.z = 16 - scr * FLY;
-      camera.lookAt(ptx * 1.2, camera.position.y * 0.35, camera.position.z - 12);
+      camera.lookAt(ptx * 0.8, 0.6, camera.position.z - 14);
       for (var i = 0; i < items.length; i++) {
         var m = items[i], u = m.userData;
-        m.rotation.x += u.rx * 0.01; m.rotation.y += u.ry * 0.01;
-        m.position.y = u.y0 + Math.sin(t * 0.0004 + u.ph) * u.amp;
+        m.position.y = u.y0 + Math.sin(t * 0.00022 + u.ph) * u.amp;   // gentle float
+        if (u.rot) m.rotation.z += u.rot * 0.01;
       }
-      group.rotation.y = Math.sin(t * 0.00006) * 0.06;
+      group.rotation.y = Math.sin(t * 0.00004) * 0.03;
       renderer.render(scene, camera);
     }
 
     canvas.classList.add("on");
 
     if (reduce) {
-      draw(0); // single static frame, no motion
+      draw(0);
     } else {
       window.addEventListener("pointermove", function (e) {
         tptx = e.clientX / window.innerWidth - 0.5;
