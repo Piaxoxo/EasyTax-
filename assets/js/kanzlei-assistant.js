@@ -1,17 +1,59 @@
 /* ============================================================
-   EasyTax · kanzlei-assistant
+   EasyTax · kanzlei-assistant  (zweisprachig DE/EN)
    Dezenter, dauerhafter „Digitaler Kanzlei-Assistent": schwebender
-   Button + Panel mit Kontaktwegen. Nicht aggressiv: ein einziger,
-   zurückhaltender Hinweis nach 10s ODER 30% Scroll. Verdrahtet außerdem
-   alle [data-open-analysis] / [data-open-assistant] CTAs der Seite.
+   Button + Panel mit Kontaktwegen und DE|EN-Umschalter. Ein einziger,
+   zurückhaltender Hinweis nach 10s ODER 30% Scroll. Verdrahtet alle
+   [data-open-analysis] / [data-open-assistant] CTAs der Seite.
    ============================================================ */
 (function () {
   "use strict";
   var C = window.EasyTaxContact;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fab, panel, nudge, isOpen = false, nudged = false;
-
+  function T(de, en) { return C.t(de, en); }
   function A() { return window.EasyTaxAnalysis; }
+
+  function panelHTML() {
+    var lang = C.getLang();
+    var langBtns =
+      '<div class="eta-lang eta-lang--panel" role="group" aria-label="Sprache / Language">' +
+        '<button type="button" class="eta-lang-b" data-a="lang" data-lang="de" aria-pressed="' + (lang === "de") + '">DE</button>' +
+        '<button type="button" class="eta-lang-b" data-a="lang" data-lang="en" aria-pressed="' + (lang === "en") + '">EN</button>' +
+      '</div>';
+    return '' +
+      '<div class="eta-panel-head">' +
+        '<div><p class="eta-panel-h">' + T("Digitaler Kanzlei-Assistent", "Digital Firm Assistant") + '</p><p class="eta-panel-s">' + T("Ihr erster Ansprechpartner bei EasyTax.", "Your first point of contact at EasyTax.") + '</p></div>' +
+        '<div class="eta-panel-head-r">' + langBtns +
+          '<button type="button" class="eta-panel-x" data-a="close" aria-label="' + T("Schließen", "Close") + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="eta-panel-opts">' +
+        '<button type="button" class="eta-po" data-a="analysis"><span class="eta-po-h">' + T("Unternehmensanalyse starten", "Start business analysis") + '</span><span class="eta-po-s">' + T("In wenigen Schritten zur passenden Betreuung", "A few steps to the right support") + '</span></button>' +
+        '<a class="eta-po" href="' + C.telHref() + '"><span class="eta-po-h">' + T("Ich möchte anrufen", "I'd like to call") + '</span><span class="eta-po-s">' + C.PHONE_DISPLAY + '</span></a>' +
+        '<button type="button" class="eta-po" data-a="email"><span class="eta-po-h">' + T("Ich möchte eine E-Mail schreiben", "I'd like to write an email") + '</span><span class="eta-po-s">' + T("Anfrage vorbereiten", "Prepare enquiry") + '</span></button>' +
+        '<button type="button" class="eta-po" data-a="services"><span class="eta-po-h">' + T("Ich habe eine Frage zu Leistungen", "I have a question about services") + '</span><span class="eta-po-s">' + T("Kurzer Überblick", "Quick overview") + '</span></button>' +
+        '<button type="button" class="eta-po" data-a="mandant"><span class="eta-po-h">' + T("Ich bin bereits Mandant", "I'm already a client") + '</span><span class="eta-po-s">' + T("Direkter Kontakt", "Direct contact") + '</span></button>' +
+      '</div>' +
+      '<div class="eta-panel-info" hidden>' +
+        '<p>' + C.guard("services") + '</p>' +
+        '<p class="eta-panel-info-note">' + T("Fragen zu Preisen oder konkreten Steuerthemen klären wir gerne persönlich – am besten in einem kurzen Gespräch.", "Questions about prices or specific tax topics are best clarified personally – ideally in a short conversation.") + '</p>' +
+        '<div class="eta-panel-info-cta"><button type="button" class="eta-btn eta-btn--primary" data-a="analysis"><span>' + T("Analyse starten", "Start analysis") + '</span></button><a class="eta-btn eta-btn--ghost" href="' + C.telHref() + '"><span>' + T("Anrufen", "Call") + '</span></a></div>' +
+      '</div>';
+  }
+
+  function nudgeHTML() {
+    return '' +
+      '<button type="button" class="eta-nudge-x" data-a="nudge-close" aria-label="' + T("Hinweis schließen", "Close hint") + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>' +
+      '<p>' + T("Wir helfen Ihnen gerne, die passende Betreuung zu finden.", "We're happy to help you find the right support.") + '</p>' +
+      '<button type="button" class="eta-btn eta-btn--primary eta-btn--sm" data-a="analysis"><span>' + T("Analyse starten", "Start analysis") + '</span></button>';
+  }
+
+  function updateFab() {
+    if (!fab) return;
+    fab.setAttribute("aria-label", T("Kanzlei-Assistent öffnen", "Open firm assistant"));
+    var lbl = fab.querySelector(".eta-fab-label");
+    if (lbl) lbl.textContent = T("Kanzlei-Assistent", "Firm Assistant");
+  }
 
   function build() {
     document.documentElement.classList.add("eta-has-assistant");
@@ -21,43 +63,22 @@
     fab.className = "eta-fab";
     fab.setAttribute("aria-haspopup", "dialog");
     fab.setAttribute("aria-expanded", "false");
-    fab.setAttribute("aria-label", "Kanzlei-Assistent öffnen");
-    fab.innerHTML =
-      '<span class="eta-fab-dot" aria-hidden="true"></span>' +
-      '<span class="eta-fab-label">Kanzlei-Assistent</span>';
+    fab.innerHTML = '<span class="eta-fab-dot" aria-hidden="true"></span><span class="eta-fab-label"></span>';
     document.body.appendChild(fab);
+    updateFab();
 
     panel = document.createElement("div");
     panel.className = "eta-panel";
     panel.setAttribute("role", "dialog");
-    panel.setAttribute("aria-label", "Digitaler Kanzlei-Assistent");
+    panel.setAttribute("aria-label", "EasyTax");
     panel.hidden = true;
-    panel.innerHTML =
-      '<div class="eta-panel-head">' +
-        '<div><p class="eta-panel-h">Digitaler Kanzlei-Assistent</p><p class="eta-panel-s">Ihr erster Ansprechpartner bei EasyTax.</p></div>' +
-        '<button type="button" class="eta-panel-x" data-a="close" aria-label="Schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></button>' +
-      '</div>' +
-      '<div class="eta-panel-opts">' +
-        '<button type="button" class="eta-po" data-a="analysis"><span class="eta-po-h">Unternehmensanalyse starten</span><span class="eta-po-s">In wenigen Schritten zur passenden Betreuung</span></button>' +
-        '<a class="eta-po" href="' + C.telHref() + '"><span class="eta-po-h">Ich möchte anrufen</span><span class="eta-po-s">' + C.PHONE_DISPLAY + '</span></a>' +
-        '<button type="button" class="eta-po" data-a="email"><span class="eta-po-h">Ich möchte eine E-Mail schreiben</span><span class="eta-po-s">Anfrage vorbereiten</span></button>' +
-        '<button type="button" class="eta-po" data-a="services"><span class="eta-po-h">Ich habe eine Frage zu Leistungen</span><span class="eta-po-s">Kurzer Überblick</span></button>' +
-        '<button type="button" class="eta-po" data-a="mandant"><span class="eta-po-h">Ich bin bereits Mandant</span><span class="eta-po-s">Direkter Kontakt</span></button>' +
-      '</div>' +
-      '<div class="eta-panel-info" hidden>' +
-        '<p>' + C.GUARD.services + '</p>' +
-        '<p class="eta-panel-info-note">Fragen zu Preisen oder konkreten Steuerthemen klären wir gerne persönlich – am besten in einem kurzen Gespräch.</p>' +
-        '<div class="eta-panel-info-cta"><button type="button" class="eta-btn eta-btn--primary" data-a="analysis"><span>Analyse starten</span></button><a class="eta-btn eta-btn--ghost" href="' + C.telHref() + '"><span>Anrufen</span></a></div>' +
-      '</div>';
+    panel.innerHTML = panelHTML();
     document.body.appendChild(panel);
 
     nudge = document.createElement("div");
     nudge.className = "eta-nudge";
     nudge.hidden = true;
-    nudge.innerHTML =
-      '<button type="button" class="eta-nudge-x" data-a="nudge-close" aria-label="Hinweis schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>' +
-      '<p>Wir helfen Ihnen gerne, die passende Betreuung zu finden.</p>' +
-      '<button type="button" class="eta-btn eta-btn--primary eta-btn--sm" data-a="analysis"><span>Analyse starten</span></button>';
+    nudge.innerHTML = nudgeHTML();
     document.body.appendChild(nudge);
 
     fab.addEventListener("click", toggle);
@@ -73,9 +94,20 @@
     scheduleNudge();
   }
 
+  function setLang(l) {
+    if (l === C.getLang()) return;
+    C.setLang(l);
+    panel.innerHTML = panelHTML();
+    nudge.innerHTML = nudgeHTML();
+    updateFab();
+  }
+
   function toggle() { isOpen ? closePanel() : openPanel(); }
   function openPanel() {
     hideNudge();
+    // always reflect the current language (follows the site language unless overridden)
+    panel.innerHTML = panelHTML();
+    updateFab();
     panel.hidden = false;
     requestAnimationFrame(function () { panel.classList.add("is-open"); });
     fab.setAttribute("aria-expanded", "true");
@@ -96,6 +128,7 @@
   function onPanelClick(e) {
     var t = e.target.closest("[data-a]"); if (!t) return;
     var a = t.getAttribute("data-a");
+    if (a === "lang") return setLang(t.getAttribute("data-lang"));
     if (a === "close") return closePanel();
     if (a === "nudge-close") return hideNudge(true);
     if (a === "analysis") { closePanel(); hideNudge(true); if (A()) A().open(); return; }
@@ -124,7 +157,6 @@
     if (window.__etNudgeCleanup) window.__etNudgeCleanup();
     nudge.hidden = false;
     requestAnimationFrame(function () { nudge.classList.add("is-show"); });
-    // von selbst wieder zurückziehen nach 9s
     setTimeout(function () { if (!isOpen) hideNudge(); }, 9000);
   }
   function hideNudge(perm) {

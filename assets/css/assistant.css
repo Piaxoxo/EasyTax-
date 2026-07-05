@@ -34,6 +34,20 @@ html.eta-lock { overflow: hidden; }
 .eta-close svg { width: 18px; height: 18px; }
 .eta-close:hover { background: #fff; border-color: var(--hair); transform: rotate(90deg); }
 
+/* DE | EN language switch — pure typography, softly animated */
+.eta-top-right { display: inline-flex; align-items: center; gap: 14px; }
+.eta-panel-head-r { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.eta-lang { display: inline-flex; align-items: center; gap: 2px; }
+.eta-lang-b { position: relative; background: none; border: 0; cursor: pointer; font-family: var(--sans); font-weight: 600;
+  font-size: .74rem; letter-spacing: .14em; color: var(--mute); padding: 5px 8px; transition: color .45s var(--e2); }
+.eta-lang-b::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 2px; height: 1px;
+  background: var(--gold-deep); transform: scaleX(0); transform-origin: center; transition: transform .55s var(--e2); }
+.eta-lang-b:hover { color: var(--ink); }
+.eta-lang-b[aria-pressed="true"] { color: var(--ink); }
+.eta-lang-b[aria-pressed="true"]::after { transform: scaleX(1); }
+.eta-lang-b:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+.eta-lang--panel .eta-lang-b { font-size: .7rem; padding: 3px 6px; }
+
 .eta-progress { height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; margin-bottom: clamp(22px, 3vw, 34px); }
 .eta-bar { display: block; height: 100%; width: 100%; transform-origin: left; transform: scaleX(.02);
   background: linear-gradient(90deg, var(--gold-deep), var(--gold-hi)); transition: transform .7s var(--e2); }
