@@ -17,3 +17,6 @@ a-*.png
 t-*.png
 _test.mjs
 _panel.mjs
+L-*.png
+_leg.mjs
+_s.mjs

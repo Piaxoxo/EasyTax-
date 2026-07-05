@@ -1,0 +1,68 @@
+/* ============================================================
+   EasyTax · Legal pages (Impressum, Cookie-Richtlinie)
+   Gleiche Quiet-Luxury-Sprache wie die Startseite. Nutzt die
+   Tokens aus styles.css; Inhalt in einem Glas-Dokument über der
+   lebendigen 3D-Welt.
+   ============================================================ */
+
+.legal-main { position: relative; z-index: 2; padding: clamp(120px, 16vh, 180px) 0 90px; }
+.legal-doc { max-width: 900px; margin: 0 auto; }
+
+.legal-head { margin-bottom: clamp(34px, 5vw, 56px); }
+.legal-chapter { display: flex; align-items: baseline; gap: 18px; margin-bottom: 26px; }
+.legal-no { font-family: var(--serif); font-size: clamp(2.2rem, 4.4vw, 3.4rem); color: transparent; -webkit-text-stroke: 1px var(--hair); font-weight: 600; line-height: .8; }
+.legal-kicker { font-size: .74rem; letter-spacing: .34em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; }
+.legal-h1 { font-family: var(--serif); font-weight: 600; line-height: 1.04; letter-spacing: -.012em; color: var(--ink);
+  font-size: clamp(2.3rem, 5.4vw, 4rem); max-width: 18ch; }
+.legal-sub { color: var(--soft); font-size: 1.1rem; margin-top: 20px; max-width: 60ch; }
+
+.legal-panel { position: relative; padding: clamp(28px, 4vw, 56px); border-radius: 22px;
+  background: rgba(255,255,255,.6); backdrop-filter: blur(22px) saturate(135%); -webkit-backdrop-filter: blur(22px) saturate(135%);
+  border: 1px solid var(--glass-brd); box-shadow: var(--shadow-lux); }
+.legal-panel::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(140deg, rgba(255,255,255,.9), transparent 44%, rgba(176,137,62,.22));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+
+.legal-sec { padding: 30px 0; border-top: 1px solid var(--line); }
+.legal-sec:first-child { border-top: 0; padding-top: 0; }
+.legal-sec h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 2.4vw, 1.8rem); color: var(--ink); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.legal-sec h2::before { content: ""; width: 22px; height: 1px; background: var(--hair); flex-shrink: 0; }
+.legal-sec h3 { font-family: var(--sans); font-weight: 600; font-size: 1rem; color: var(--ink); margin: 18px 0 8px; }
+.legal-sec p, .legal-sec li { color: var(--soft); font-size: 1.02rem; line-height: 1.72; }
+.legal-sec p + p { margin-top: 12px; }
+.legal-sec a { color: var(--gold-deep); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; transition: color .3s; }
+.legal-sec a:hover { color: var(--gold); }
+.legal-sec ul { list-style: none; margin: 10px 0; }
+.legal-sec ul li { position: relative; padding-left: 20px; margin-bottom: 8px; }
+.legal-sec ul li::before { content: ""; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f0dba6, var(--gold) 60%, var(--gold-deep)); }
+
+/* Data list (Impressum key/value) */
+.legal-dl { display: grid; grid-template-columns: minmax(180px, max-content) 1fr; gap: 12px 34px; margin-top: 6px; }
+.legal-dl dt { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; padding-top: 3px; }
+.legal-dl dd { color: var(--ink); font-size: 1.04rem; }
+.legal-dl dd a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--hair); }
+.legal-dl dd a:hover { color: var(--gold-deep); }
+
+.legal-confirm { color: var(--mute); font-style: italic; font-size: .9rem; }
+.legal-note { margin-top: 12px; padding: 14px 18px; border-radius: 12px; background: rgba(176,137,62,.08); border: 1px solid rgba(176,137,62,.2); color: var(--soft); font-size: .9rem; }
+
+.legal-back { display: inline-flex; align-items: center; gap: 10px; margin-top: 40px; color: var(--soft); font-size: .95rem; text-decoration: none; transition: gap .3s var(--e2), color .3s; }
+.legal-back:hover { color: var(--gold-deep); gap: 14px; }
+.legal-back svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+
+.legal-updated { color: var(--mute); font-size: .82rem; margin-top: 8px; }
+
+/* Footer legal row + agency credit (shared with home) */
+.footer-legal { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; }
+.footer-legal a { color: var(--mute); font-size: .82rem; transition: color .3s; }
+.footer-legal a:hover { color: var(--gold-deep); }
+.footer-legal .sep { color: var(--line); }
+.bandita-credit { color: var(--mute); font-size: .82rem; }
+.bandita-credit a { color: var(--soft); text-decoration: none; border-bottom: 1px solid var(--hair); transition: color .3s; }
+.bandita-credit a:hover { color: var(--gold-deep); }
+
+@media (max-width: 620px) {
+  .legal-dl { grid-template-columns: 1fr; gap: 4px 0; }
+  .legal-dl dt { margin-top: 12px; }
+  .legal-dl dt:first-child { margin-top: 0; }
+}
