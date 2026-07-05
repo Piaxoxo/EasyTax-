@@ -191,6 +191,16 @@ img { max-width: 100%; display: block; }
 .nav-toggle { display: none; flex-direction: column; gap: 6px; background: none; border: 0; padding: 8px; }
 .nav-toggle span { width: 26px; height: 1.5px; background: var(--ink); transition: .4s var(--e2); }
 
+/* Language switch (DE / EN / IT) */
+.lang-switch { display: inline-flex; align-items: center; gap: 2px; padding: 3px; flex-shrink: 0;
+  border: 1px solid var(--line-2); border-radius: 100px; background: rgba(255,255,255,.4); }
+.lang-switch button { font-family: var(--sans); font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+  color: var(--mute); background: none; border: 0; padding: 5px 9px; border-radius: 100px; cursor: pointer;
+  transition: color .3s, background .3s, box-shadow .3s; }
+.lang-switch button:hover { color: var(--ink); }
+.lang-switch button[aria-pressed="true"] { color: #fff8ea;
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep)); box-shadow: 0 2px 8px -2px rgba(176,137,62,.6); }
+
 /* ---------- Hero ---------- */
 .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 150px 0 90px; }
 .hero-inner { position: relative; z-index: 3; }
@@ -256,20 +266,21 @@ figcaption { margin-top: 18px; text-align: center; display: flex; flex-direction
 .phase-label { font-size: .74rem; letter-spacing: .3em; text-transform: uppercase; color: var(--mute); margin-bottom: 14px; display: flex; align-items: center; gap: 14px; }
 .phase-label span { font-family: var(--serif); font-size: 1.1rem; color: var(--gold-deep); letter-spacing: 0; }
 .svc-lines { list-style: none; }
-.svc-lines li { position: relative; display: flex; align-items: center; gap: 26px; padding: 22px 0; border-top: 1px solid var(--line);
-  transition: padding .5s var(--e2); }
+.svc-lines li { position: relative; border-top: 1px solid var(--line); }
 .svc-lines li:last-child { border-bottom: 1px solid var(--line); }
+.svc-lines li > a { position: relative; display: flex; align-items: center; gap: 26px; padding: 22px 0;
+  color: inherit; text-decoration: none; transition: padding .5s var(--e2); }
 .s-no { font-family: var(--serif); font-size: .9rem; color: var(--mute); width: 30px; transition: color .4s; }
 .s-name { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.4rem); font-weight: 500; letter-spacing: -.01em; flex: 1;
   transition: transform .5s var(--e2), color .4s; }
 .s-go { font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-deep);
   opacity: 0; transform: translateX(-10px); transition: opacity .4s var(--e2), transform .5s var(--e2); }
-.svc-lines li:hover { padding-left: 22px; }
-.svc-lines li:hover .s-name { transform: translateX(6px); color: var(--gold-deep); }
-.svc-lines li:hover .s-no { color: var(--gold); }
-.svc-lines li:hover .s-go { opacity: 1; transform: none; }
-.svc-lines li::after { content:""; position:absolute; top:-1px; left:0; width:0; height:2px; background: var(--gold); transition: width .6s var(--e1); }
-.svc-lines li:hover::after { width: 100%; }
+.svc-lines li > a:hover { padding-left: 22px; }
+.svc-lines li > a:hover .s-name { transform: translateX(6px); color: var(--gold-deep); }
+.svc-lines li > a:hover .s-no { color: var(--gold); }
+.svc-lines li > a:hover .s-go { opacity: 1; transform: none; }
+.svc-lines li > a::after { content:""; position:absolute; top:-1px; left:0; width:0; height:2px; background: var(--gold); transition: width .6s var(--e1); }
+.svc-lines li > a:hover::after { width: 100%; }
 
 /* ---------- Story (documentary) ---------- */
 .story { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 18vh 0; overflow: hidden; color: #efe7d6; background: #14110c; }
@@ -402,6 +413,7 @@ figcaption { margin-top: 18px; text-align: center; display: flex; flex-direction
 @media (max-width: 860px) {
   .nav, .header-cta { display: none; }
   .nav-toggle { display: flex; }
+  .lang-switch { margin-left: auto; }
   .site-header.menu-open .nav { display: flex; flex-direction: column; position: absolute; top: 84px; left: 0; right: 0;
     background: rgba(239,233,223,.98); backdrop-filter: blur(20px); padding: 28px 40px; gap: 22px; border-bottom: 1px solid var(--line); }
   .site-header.menu-open .nav a { font-family: var(--serif); font-size: 1.4rem; }

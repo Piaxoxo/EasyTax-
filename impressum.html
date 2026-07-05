@@ -30,9 +30,11 @@
       <img src="assets/img/easytax-runner.svg" alt="EasyTax Logo" class="brand-runner" width="42" height="42" />
     </a>
     <nav class="nav" aria-label="Hauptnavigation">
-      <a href="index.html#leistungen">Leistungen</a>
-      <a href="index.html#story">Dr. Bortoluzzi</a>
-      <a href="index.html#faq">FAQ</a>
+      <a href="index.html" data-magnetic>Home</a>
+      <a href="leistungen.html" data-magnetic>Leistungen</a>
+      <a href="index.html#story" data-magnetic>Über uns</a>
+      <a href="index.html#faq" data-magnetic>FAQ</a>
+      <a href="index.html#anfrage" data-magnetic>Kontakt</a>
     </nav>
     <div class="header-cta">
       <a href="tel:+43191333670" class="link-call" aria-label="EasyTax anrufen">
@@ -40,6 +42,11 @@
         <span>+43 1 913 3367-0</span>
       </a>
       <a href="index.html#anfrage" class="btn btn-foil"><span>Erstgespräch</span></a>
+    </div>
+    <div class="lang-switch" id="langSwitch" role="group" aria-label="Sprache · Language · Lingua">
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="it" aria-pressed="false">IT</button>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span></button>
   </div>
@@ -143,6 +150,8 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script defer src="assets/js/i18n-dict.js"></script>
+<script defer src="assets/js/i18n.js"></script>
 <script defer src="assets/js/ambient.js"></script>
 <script defer src="assets/vendor/three.min.js"></script>
 <script defer src="assets/js/scene3d.js"></script>

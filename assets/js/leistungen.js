@@ -146,6 +146,16 @@
       lightEl.style.opacity = "0";
     }
 
+    /* ---------- deep-link landing (from home service links) ---------- */
+    var hash = location.hash;
+    if (hash && /^#svc-\d+$/.test(hash)) {
+      var target = document.querySelector(hash);
+      if (target) {
+        target.querySelectorAll(".svc-hero, .svc-sheet").forEach(function (el) { el.classList.add("in"); });
+        setTimeout(function () { try { target.scrollIntoView(); } catch (e) {} onScroll(); }, 80);
+      }
+    }
+
     /* ---------- year ---------- */
     var y = document.getElementById("year"); if (y) y.textContent = new Date().getFullYear();
 

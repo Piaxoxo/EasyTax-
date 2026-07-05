@@ -82,10 +82,11 @@
       <img src="assets/img/easytax-runner.svg" alt="EasyTax Logo" class="brand-runner" width="42" height="42" />
     </a>
     <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#hero" data-magnetic>Home</a>
       <a href="leistungen.html" data-magnetic>Leistungen</a>
-      <a href="#story" data-magnetic>Dr. Bortoluzzi</a>
-      <a href="#wechsel" data-magnetic>Wechseln</a>
+      <a href="#story" data-magnetic>Über uns</a>
       <a href="#faq" data-magnetic>FAQ</a>
+      <a href="#anfrage" data-magnetic>Kontakt</a>
     </nav>
     <div class="header-cta">
       <a href="tel:+43191333670" class="link-call" aria-label="EasyTax anrufen" data-magnetic>
@@ -93,6 +94,11 @@
         <span>+43 1 913 3367-0</span>
       </a>
       <a href="#anfrage" class="btn btn-foil" data-magnetic><span>Erstgespräch</span></a>
+    </div>
+    <div class="lang-switch" id="langSwitch" role="group" aria-label="Sprache · Language · Lingua">
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="it" aria-pressed="false">IT</button>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span></button>
   </div>
@@ -207,27 +213,27 @@
       <div class="svc-phase reveal">
         <p class="phase-label"><span>I</span> Laufende Betreuung</p>
         <ul class="svc-lines">
-          <li data-service="Steuerberatung"><span class="s-no">01</span><span class="s-name">Steuerberatung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
-          <li data-service="Buchhaltung"><span class="s-no">02</span><span class="s-name">Buchhaltung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
-          <li data-service="Lohnverrechnung"><span class="s-no">03</span><span class="s-name">Lohnverrechnung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
-          <li data-service="Bilanzierung / Jahresabschluss"><span class="s-no">04</span><span class="s-name">Bilanzierung &amp; Jahresabschluss</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li><a href="leistungen.html#svc-5"><span class="s-no">01</span><span class="s-name">Steuerberatung</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
+          <li><a href="leistungen.html#svc-1"><span class="s-no">02</span><span class="s-name">Buchhaltung</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
+          <li><a href="leistungen.html#svc-2"><span class="s-no">03</span><span class="s-name">Lohnverrechnung</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
+          <li><a href="leistungen.html#svc-3"><span class="s-no">04</span><span class="s-name">Bilanzierung &amp; Jahresabschluss</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
         </ul>
       </div>
       <div class="svc-phase reveal">
         <p class="phase-label"><span>II</span> Wachstum &amp; Aufbau</p>
         <ul class="svc-lines">
-          <li data-service="Unternehmensgründung"><span class="s-no">05</span><span class="s-name">Unternehmensgründung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
-          <li data-service="Beratung für Unternehmen & Selbstständige"><span class="s-no">06</span><span class="s-name">Beratung für Unternehmen &amp; Selbstständige</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
-          <li data-service="Beratung für Gründer"><span class="s-no">07</span><span class="s-name">Beratung für Gründer</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
-          <li data-service="Digitale Steuerberatung"><span class="s-no">08</span><span class="s-name">Digitale Steuerberatung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li><a href="leistungen.html#svc-4"><span class="s-no">05</span><span class="s-name">Unternehmensgründung</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
+          <li><a href="leistungen.html#svc-5"><span class="s-no">06</span><span class="s-name">Beratung für Unternehmen &amp; Selbstständige</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
+          <li><a href="leistungen.html#svc-4"><span class="s-no">07</span><span class="s-name">Beratung für Gründer</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
+          <li><a href="leistungen.html#svc-5"><span class="s-no">08</span><span class="s-name">Digitale Steuerberatung</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
         </ul>
       </div>
       <div class="svc-phase reveal">
         <p class="phase-label"><span>III</span> Krise &amp; Wende</p>
         <ul class="svc-lines">
-          <li data-service="Restrukturierung"><span class="s-no">09</span><span class="s-name">Restrukturierung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
-          <li data-service="Krisenmanagement"><span class="s-no">10</span><span class="s-name">Krisenmanagement</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
-          <li data-service="Insolvenzberatung"><span class="s-no">11</span><span class="s-name">Insolvenzberatung</span><span class="s-go" aria-hidden="true">Anfragen</span></li>
+          <li><a href="leistungen.html#svc-7"><span class="s-no">09</span><span class="s-name">Restrukturierung</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
+          <li><a href="leistungen.html#svc-6"><span class="s-no">10</span><span class="s-name">Krisenmanagement</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
+          <li><a href="leistungen.html#svc-8"><span class="s-no">11</span><span class="s-name">Insolvenzberatung</span><span class="s-go" aria-hidden="true">Ansehen</span></a></li>
         </ul>
       </div>
     </div>
@@ -478,6 +484,8 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="assets/js/main.js"></script>
+<script defer src="assets/js/i18n-dict.js"></script>
+<script defer src="assets/js/i18n.js"></script>
 <script defer src="assets/js/ambient.js"></script>
 <script defer src="assets/vendor/three.min.js"></script>
 <script defer src="assets/js/scene3d.js"></script>
