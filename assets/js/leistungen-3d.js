@@ -374,9 +374,11 @@
   }
 
   /* ---------- API ---------- */
+  var pulseT = 0;
   api.enabled = true;
   api.setProgress = function (p) { targetProgress = Math.max(0, Math.min(1, p || 0)); };
   api.setPointer = function (x, y) { pointer.x = x; pointer.y = y; };
+  api.pulse = function () { pulseT = 1; };
   api.resize = resize;
 
   /* ---------- main loop ---------- */
@@ -441,10 +443,16 @@
     objectRoot.rotation.y = ptr.x * 0.12;
     objectRoot.rotation.x = -ptr.y * 0.06;
 
-    // gold glow follows pointer + pulses on transition
-    glow.position.x = ptr.x * 3.2; glow.position.y = 1.4 + ptr.y * 1.5;
-    glow.intensity = 0.5 + burst * 2.2;
+    // accordion pulse: brief dolly-in + light bloom
+    if (pulseT > 0.001) pulseT = Math.max(0, pulseT - dt * 1.6);
+    var pulse = pulseT * pulseT * (3 - 2 * pulseT);
 
+    // gold glow follows pointer + pulses on transition/open
+    glow.position.x = ptr.x * 3.2; glow.position.y = 1.4 + ptr.y * 1.5;
+    glow.intensity = 0.5 + burst * 2.2 + pulse * 1.8;
+
+    var baseZ = (window.innerWidth / window.innerHeight < 0.75) ? 8.6 : 7.4;
+    camera.position.z += ((baseZ - pulse * 0.7) - camera.position.z) * Math.min(1, dt * 3);
     camera.position.x += (ptr.x * 0.5 - camera.position.x) * Math.min(1, dt * 3);
     camera.lookAt(objectRoot.position.x * 0.5, 0.4, 0);
 

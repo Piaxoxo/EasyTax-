@@ -23,24 +23,26 @@
     var lightEl = document.getElementById("svcLight");
 
     /* ---------- Reveal on view ---------- */
+    var revealSel = ".svc-intro, .svc-hero, .svc-sheet, .svc-outro, .reveal, [data-reveal]";
     if ("IntersectionObserver" in window) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
         });
-      }, { threshold: 0.28 });
-      document.querySelectorAll(".svc, .svc-outro, .reveal, [data-reveal]").forEach(function (el) { io.observe(el); });
+      }, { threshold: 0.2 });
+      document.querySelectorAll(revealSel).forEach(function (el) { io.observe(el); });
     } else {
-      document.querySelectorAll(".svc, .svc-outro, .reveal, [data-reveal]").forEach(function (el) { el.classList.add("in"); });
+      document.querySelectorAll(revealSel).forEach(function (el) { el.classList.add("in"); });
     }
 
-    /* ---------- Accordion ---------- */
+    /* ---------- Accordion (opens → nudges the 3D world) ---------- */
     document.querySelectorAll(".svc-acc-toggle").forEach(function (btn) {
       var panel = document.getElementById(btn.getAttribute("aria-controls"));
       btn.addEventListener("click", function () {
         var open = btn.getAttribute("aria-expanded") === "true";
         btn.setAttribute("aria-expanded", String(!open));
         if (panel) panel.classList.toggle("open", !open);
+        if (!open && window.SvcScene && window.SvcScene.pulse) window.SvcScene.pulse();
       });
     });
 
@@ -49,13 +51,9 @@
       var subject = "Anfrage – " + service;
       var body =
         "Sehr geehrtes EasyTax-Team,\n\n" +
-        "ich interessiere mich für Ihre Leistung „" + service + "“ und würde gerne mehr erfahren.\n\n" +
-        "Kurz zu mir:\n" +
-        "• Unternehmen: \n" +
-        "• Telefon für einen Rückruf: \n" +
-        "• Mein Anliegen: \n\n" +
-        "Ich freue mich über Ihre Rückmeldung.\n\n" +
-        "Mit freundlichen Grüßen";
+        "ich interessiere mich für Ihre Leistungen im Bereich " + service + ".\n\n" +
+        "Ich würde gerne ein persönliches Gespräch vereinbaren und freue mich über Ihre Rückmeldung.\n\n" +
+        "Mit freundlichen Grüßen\n";
       if (window.EasyTaxContact && window.EasyTaxContact.buildMailto) {
         return window.EasyTaxContact.buildMailto(subject, body);
       }
@@ -92,26 +90,25 @@
       return best;
     }
 
-    /* Chapter float aligned to section centers: object i is fully formed
-       exactly when chapter i sits in the viewport centre; transitions (and
-       the shard shatter) happen while scrolling between two centres. */
+    /* Chapter float: the object stays fully formed while its (tall) chapter
+       is on screen and only transitions — with the shard shatter — in the
+       last stretch before the next chapter begins. */
+    var SEAM = 0.82; // 0..SEAM = stable object i · SEAM..1 = morph to i+1
     function chapterFloat() {
       var n = sections.length; if (!n) return 0;
       var Y = window.scrollY + window.innerHeight / 2;
-      var centers = [];
       for (var i = 0; i < n; i++) {
         var r = sections[i].getBoundingClientRect();
-        centers.push(window.scrollY + r.top + r.height / 2);
-      }
-      if (Y <= centers[0]) return 0;
-      if (Y >= centers[n - 1]) return n - 1;
-      for (var j = 0; j < n - 1; j++) {
-        if (Y >= centers[j] && Y <= centers[j + 1]) {
-          var span = centers[j + 1] - centers[j] || 1;
-          return j + (Y - centers[j]) / span;
+        var top = window.scrollY + r.top;
+        var bottom = top + r.height;
+        if (Y < top) return i === 0 ? 0 : i;           // in the intro (before ch.1)
+        if (Y < bottom) {                               // inside chapter i
+          if (i === n - 1) return i;
+          var local = (Y - top) / (r.height || 1);
+          return local <= SEAM ? i : i + (local - SEAM) / (1 - SEAM);
         }
       }
-      return 0;
+      return n - 1;                                     // past the last chapter
     }
 
     var ticking = false, N = sections.length;
