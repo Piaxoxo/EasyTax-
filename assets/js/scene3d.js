@@ -1,9 +1,10 @@
 /* ============================================================
    EasyTax · Real 3D world (three.js) — clean geometric marble field
    A bright, weightless field of pale geometric marble forms drifting
-   in soft ivory mist. The camera glides through as you scroll; forms
-   turn gently, sparse champagne-gold rings catch the light. Clean,
-   white, alive — a calm pattern of shapes behind the editorial content.
+   in soft ivory mist. The camera glides and zooms through as you
+   scroll; forms turn, sway and breathe, sparse champagne-gold rings
+   catch the light. Clean, white, alive — a living pattern of shapes
+   behind the content, on every page.
 
    Graceful degradation:
      three.js + WebGL ok   -> full 3D world
@@ -38,9 +39,10 @@
     renderer.toneMappingExposure = 1.08;
 
     var scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0xefe8dc, 0.027);   // bright ivory mist
+    scene.fog = new THREE.FogExp2(0xefe8dc, 0.026);   // bright ivory mist
 
-    var camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 220);
+    var BASE_FOV = 52;
+    var camera = new THREE.PerspectiveCamera(BASE_FOV, window.innerWidth / window.innerHeight, 0.1, 240);
     camera.position.set(0, 0, 16);
 
     /* soft studio environment (vertical gradient) → reflections & sheen */
@@ -71,7 +73,8 @@
       new THREE.BoxGeometry(1.7, 1.0, 0.6),
       new THREE.IcosahedronGeometry(0.95, 0),
       new THREE.BoxGeometry(0.7, 3.4, 0.7),
-      new THREE.OctahedronGeometry(0.95, 0)
+      new THREE.OctahedronGeometry(0.95, 0),
+      new THREE.TetrahedronGeometry(1.1, 0)
     ];
     var ringGeo = new THREE.TorusGeometry(0.95, 0.055, 12, 46);
 
@@ -79,25 +82,32 @@
     var items = [];
     var seed = 20240705; function rnd() { seed = (seed * 1664525 + 1013904223) & 0x7fffffff; return seed / 0x7fffffff; }
 
-    var N = small ? 16 : 26;
-    var STEP = small ? 5.6 : 6.4;
+    var N = small ? 20 : 34;
+    var STEP = small ? 5.4 : 6.0;
     for (var i = 0; i < N; i++) {
       var mesh;
-      if (rnd() < 0.17) {
+      if (rnd() < 0.18) {
         mesh = new THREE.Mesh(ringGeo, gold);
       } else {
         mesh = new THREE.Mesh(geos[(rnd() * geos.length) | 0], rnd() < 0.5 ? marbleA : marbleB);
       }
-      var ang = rnd() * Math.PI * 2, rad = 4.2 + rnd() * 7.5;
-      mesh.position.set(Math.cos(ang) * rad, (rnd() - 0.5) * 11, 7 - i * STEP - rnd() * 3);
-      mesh.scale.setScalar(0.7 + rnd() * 1.8);
+      var ang = rnd() * Math.PI * 2, rad = 3.8 + rnd() * 8.5;
+      mesh.position.set(Math.cos(ang) * rad, (rnd() - 0.5) * 12, 8 - i * STEP - rnd() * 3);
+      var sc = 0.6 + rnd() * 2.1;
+      mesh.scale.setScalar(sc);
       mesh.rotation.set(rnd() * Math.PI, rnd() * Math.PI, rnd() * Math.PI);
-      mesh.userData = { rx: (rnd() - 0.5) * 0.08, ry: (rnd() - 0.5) * 0.11, ph: rnd() * Math.PI * 2, amp: 0.18 + rnd() * 0.45, y0: mesh.position.y };
+      mesh.userData = {
+        rx: (rnd() - 0.5) * 0.12, ry: (rnd() - 0.5) * 0.16, rz: (rnd() - 0.5) * 0.08,
+        ph: rnd() * Math.PI * 2, amp: 0.2 + rnd() * 0.6, y0: mesh.position.y,
+        x0: mesh.position.x, sway: 0.3 + rnd() * 0.8, swph: rnd() * Math.PI * 2,
+        s0: sc, breathe: rnd() < 0.5 ? (0.04 + rnd() * 0.06) : 0
+      };
       group.add(mesh); items.push(mesh);
     }
 
-    var FLY = N * STEP * 0.52;
+    var FLY = N * STEP * 0.6;              // deeper travel through the field
     var scr = 0, tScr = 0, ptx = 0, pty = 0, tptx = 0, tpty = 0;
+    var vScroll = 0, lastY = (typeof window.scrollY === "number" ? window.scrollY : 0), zoom = 0;
 
     function onResize() {
       camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
@@ -106,19 +116,32 @@
     window.addEventListener("resize", onResize, { passive: true });
 
     function draw(t) {
-      // livelier + smoother following
-      ptx += (tptx - ptx) * 0.075; pty += (tpty - pty) * 0.075;
-      scr += (tScr - scr) * 0.08;
-      camera.position.x += (ptx * 3.4 - camera.position.x) * 0.08;
-      camera.position.y += (pty * 2.2 - camera.position.y) * 0.08;
-      camera.position.z = 16 - scr * FLY;
-      camera.lookAt(ptx * 1.4, camera.position.y * 0.35, camera.position.z - 12);
+      // pointer + scroll follow (smooth, lively)
+      ptx += (tptx - ptx) * 0.08; pty += (tpty - pty) * 0.08;
+      scr += (tScr - scr) * 0.085;
+
+      // scroll-velocity zoom: a gentle "punch" while scrolling, easing back
+      vScroll *= 0.86;
+      var kick = Math.min(Math.abs(vScroll) / 55, 1);
+      zoom += (kick - zoom) * 0.12;
+      var fov = BASE_FOV - zoom * 9;                 // zoom in while moving
+      if (Math.abs(camera.fov - fov) > 0.01) { camera.fov = fov; camera.updateProjectionMatrix(); }
+
+      // continuous whisper of forward drift keeps it alive at rest
+      var drift = (t * 0.00018) % 1;
+      camera.position.x += (ptx * 3.6 - camera.position.x) * 0.085;
+      camera.position.y += (pty * 2.4 - camera.position.y) * 0.085;
+      camera.position.z = 16 - (scr * FLY) - zoom * 2.2 - drift * 0.6;
+      camera.lookAt(ptx * 1.6, camera.position.y * 0.35, camera.position.z - 12);
+
       for (var i = 0; i < items.length; i++) {
         var m = items[i], u = m.userData;
-        m.rotation.x += u.rx * 0.02; m.rotation.y += u.ry * 0.02;
-        m.position.y = u.y0 + Math.sin(t * 0.00065 + u.ph) * u.amp;
+        m.rotation.x += u.rx * 0.02; m.rotation.y += u.ry * 0.02; m.rotation.z += u.rz * 0.02;
+        m.position.y = u.y0 + Math.sin(t * 0.0007 + u.ph) * u.amp;
+        m.position.x = u.x0 + Math.sin(t * 0.0004 + u.swph) * u.sway;
+        if (u.breathe) { var s = u.s0 * (1 + Math.sin(t * 0.0009 + u.ph) * u.breathe); m.scale.setScalar(s); }
       }
-      group.rotation.y = Math.sin(t * 0.0001) * 0.08;
+      group.rotation.y = Math.sin(t * 0.00012) * 0.1;
       renderer.render(scene, camera);
     }
 
@@ -133,7 +156,9 @@
       }, { passive: true });
       window.addEventListener("scroll", function () {
         var h = document.documentElement.scrollHeight - window.innerHeight;
-        tScr = h > 0 ? window.scrollY / h : 0;
+        var y = window.scrollY;
+        vScroll += (y - lastY); lastY = y;
+        tScr = h > 0 ? y / h : 0;
       }, { passive: true });
 
       var run = true;
