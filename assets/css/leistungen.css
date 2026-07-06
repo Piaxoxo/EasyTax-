@@ -13,7 +13,7 @@
     radial-gradient(135% 105% at 50% 4%, #fcf9f2 0%, #f4eee3 46%, #ece3d4 100%);
   transition: background 2.4s cubic-bezier(.5,0,.1,1);
 }
-.svc-world #svcCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.svc-world canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .svc-world-fallback { position: absolute; inset: 0; opacity: 0; pointer-events: none;
   background: radial-gradient(80% 60% at 50% 35%, rgba(255,255,255,.6), transparent 72%);
   transition: opacity 1.2s; }
