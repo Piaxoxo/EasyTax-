@@ -300,6 +300,7 @@ figcaption { margin-top: 18px; text-align: center; display: flex; flex-direction
 
 /* ---------- Numbers (spatial) ---------- */
 .numbers { margin-top: 80px; display: grid; grid-template-columns: repeat(4,1fr); gap: 30px; perspective: 1400px; }
+.numbers--3 { grid-template-columns: repeat(3,1fr); max-width: 900px; }
 .num { position: relative; padding-top: 26px; border-top: 1px solid var(--line); }
 .num::before { content:""; position:absolute; top:-1px; left:0; width:0; height:2px; background: var(--gold); transition: width 1s var(--e1); }
 .num.in::before { width: 100%; }

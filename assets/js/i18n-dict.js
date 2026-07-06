@@ -91,9 +91,7 @@ window.__I18N__ = {
   "Wir reden nicht gern über uns. Diese Zahlen tun es für uns.": { en: "We don't like talking about ourselves. These numbers do it for us.", it: "Non amiamo parlare di noi. Lo fanno questi numeri." },
   "Jahre seit 1993": { en: "years since 1993", it: "anni dal 1993" },
   "begleitete Unternehmen": { en: "businesses supported", it: "imprese seguite" },
-  "bleiben langfristig*": { en: "stay long-term*", it: "restano a lungo termine*" },
   "fester Ansprechpartner": { en: "dedicated contact", it: "referente fisso" },
-  "*Platzhalter — vor Live-Schaltung durch belegbare Werte ersetzen.": { en: "*Placeholder — replace with verifiable figures before launch.", it: "*Segnaposto — sostituire con dati verificabili prima della pubblicazione." },
 
   /* ---------- 05 Wechsel ---------- */
   "Der Wechsel": { en: "The switch", it: "Il cambio" },
