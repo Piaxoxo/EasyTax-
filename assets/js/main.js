@@ -131,24 +131,21 @@
     document.documentElement.classList.add("has-cursor");
     var dot = document.querySelector(".cursor");
     var glow = document.querySelector(".cursor-light");
-    var mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    var dx = mx, dy = my, gx = mx, gy = my, seen = false;
-    window.addEventListener("pointermove", function (e) {
-      mx = e.clientX; my = e.clientY;
-      if (!seen) { seen = true; dot.classList.add("on"); glow.classList.add("on"); }
-    }, { passive: true });
-    (function loop() {
-      dx = lerp(dx, mx, 0.35); dy = lerp(dy, my, 0.35);
-      gx = lerp(gx, mx, 0.12); gy = lerp(gy, my, 0.12);
-      dot.style.transform = "translate3d(" + dx + "px," + dy + "px,0)";
-      glow.style.transform = "translate3d(" + gx + "px," + gy + "px,0)";
-      requestAnimationFrame(loop);
-    })();
-
-    document.querySelectorAll("a, button, [data-magnetic], .svc-lines li, .faq-item summary").forEach(function (el) {
-      el.addEventListener("pointerenter", function () { dot.classList.add("grow"); });
-      el.addEventListener("pointerleave", function () { dot.classList.remove("grow"); });
-    });
+    /* Soft ambient light glow follows the pointer — only where the element
+       exists. The native mouse cursor stays visible everywhere. */
+    if (glow) {
+      var mx = window.innerWidth / 2, my = window.innerHeight / 2;
+      var gx = mx, gy = my, seen = false;
+      window.addEventListener("pointermove", function (e) {
+        mx = e.clientX; my = e.clientY;
+        if (!seen) { seen = true; glow.classList.add("on"); }
+      }, { passive: true });
+      (function loop() {
+        gx = lerp(gx, mx, 0.12); gy = lerp(gy, my, 0.12);
+        glow.style.transform = "translate3d(" + gx + "px," + gy + "px,0)";
+        requestAnimationFrame(loop);
+      })();
+    }
 
     /* magnetic */
     document.querySelectorAll("[data-magnetic]").forEach(function (el) {

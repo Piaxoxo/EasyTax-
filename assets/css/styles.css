@@ -86,15 +86,10 @@ img { max-width: 100%; display: block; }
   background: radial-gradient(closest-side, rgba(233,210,154,.22), rgba(233,210,154,0) 70%);
   mix-blend-mode: soft-light; transition: opacity .6s;
 }
-.cursor {
-  position: fixed; top: 0; left: 0; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px;
-  border-radius: 50%; background: var(--gold-deep); pointer-events: none; z-index: 9999; opacity: 0;
-  transition: width .3s var(--e2), height .3s var(--e2), background .3s, opacity .4s, margin .3s var(--e2);
-}
-.has-cursor .cursor.on { opacity: 1; }
+/* Native mouse cursor stays visible everywhere. The hard custom dot is
+   disabled; only the soft ambient light glow follows the pointer. */
+.cursor { display: none !important; }
 .has-cursor .cursor-light.on { opacity: 1; }
-.cursor.grow { width: 46px; height: 46px; margin: -23px 0 0 -23px; background: rgba(176,137,62,.16); border: 1px solid var(--hair); }
-.has-cursor, .has-cursor a, .has-cursor button, .has-cursor [data-magnetic], .has-cursor .svc-lines li { cursor: none; }
 
 /* scroll progress */
 .scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 200;
