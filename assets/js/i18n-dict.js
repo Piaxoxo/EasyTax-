@@ -22,6 +22,7 @@ window.__I18N__ = {
 
   /* ---------- Hero (home) ---------- */
   "Steuerberatung Wien — seit 1993": { en: "Tax advice in Vienna — since 1993", it: "Consulenza fiscale a Vienna — dal 1993" },
+  "Steuerberatung Wien · seit 1993": { en: "Tax advice in Vienna · since 1993", it: "Consulenza fiscale a Vienna · dal 1993" },
   "Sie führen": { en: "You run", it: "Lei guida" },
   "Ihr Unternehmen.": { en: "your business.", it: "la sua impresa." },
   "Die Zahlen führen wir.": { en: "We handle the numbers.", it: "Ai numeri pensiamo noi." },
@@ -118,6 +119,8 @@ window.__I18N__ = {
   "Keine Bewertungen. Beziehungen.": { en: "Not ratings. Relationships.", it: "Non valutazioni. Relazioni." },
   "Auszüge aus echten Google-Rezensionen.": { en: "Excerpts from real Google reviews.", it: "Estratti da vere recensioni Google." },
   "Google-Rezension": { en: "Google review", it: "Recensione Google" },
+  "„Großartige Kanzlei, fähige tolle Mitarbeiter. Schnell und effizient, kund:innenorientiert! 100 % Weiterempfehlung.“": { en: "“Great firm, capable and wonderful staff. Fast and efficient, client-oriented! Recommended 100%.”", it: "«Studio eccellente, collaboratori capaci e splendidi. Rapidi ed efficienti, orientati al cliente! Consigliato al 100%.»" },
+  "„Prompte und zuverlässige Behandlung meines Steuerproblems. Auf jeden Fall weiterzuempfehlen.“": { en: "“Prompt and reliable handling of my tax matter. Definitely worth recommending.”", it: "«Trattamento rapido e affidabile del mio problema fiscale. Assolutamente da consigliare.»" },
 
   /* ---------- 07 FAQ ---------- */
   "Klarheit": { en: "Clarity", it: "Chiarezza" },
