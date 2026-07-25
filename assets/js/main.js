@@ -36,7 +36,7 @@
   /* ---- Intro curtain ---- */
   var intro = document.getElementById("intro");
   function dropIntro() { if (intro) intro.classList.add("done"); }
-  if (reduce) dropIntro(); else { window.addEventListener("load", function () { setTimeout(dropIntro, 1350); }); setTimeout(dropIntro, 2600); }
+  if (reduce) dropIntro(); else { window.addEventListener("load", function () { setTimeout(dropIntro, 2200); }); setTimeout(dropIntro, 3400); }
 
   /* ---- Header + mobile menu ---- */
   var header = document.getElementById("header");
