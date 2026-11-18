@@ -63,7 +63,7 @@
 <canvas id="ambient" class="ambient" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
 <div class="bg-field" aria-hidden="true"><span class="light-sweep"></span></div>
-<div class="stage" aria-hidden="true"><div class="monolith" data-monolith><img src="assets/img/marble-slab.svg" alt="" /></div></div>
+<div class="stage" aria-hidden="true"><div class="monolith" data-monolith><img src="assets/img/marble-slab.jpg" alt="" /></div></div>
 <div class="cursor-light" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"></div>
 <div class="scroll-progress" aria-hidden="true"></div>
@@ -130,7 +130,7 @@
 
   <figure class="hero-plate" data-tilt data-parallax="0.06">
     <div class="plate-frame">
-      <img src="assets/img/dr-bortoluzzi.jpg" alt="Dr. Giangiacomo Bortoluzzi, Gründer von EasyTax" />
+      <img src="assets/img/dr-bortoluzzi.jpg" alt="Dr. Giangiacomo Bortoluzzi, Gründer von EasyTax" decoding="async" />
       <span class="plate-seal" aria-hidden="true"><span>Est.<br/>1993</span></span>
     </div>
     <figcaption><span class="pc-name">Dr. Giangiacomo Bortoluzzi</span><span class="pc-role">Gründer &amp; Steuerberater</span></figcaption>
@@ -424,6 +424,12 @@
       </div>
 
       <form class="request-form glass reveal" id="requestForm" novalidate>
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite" tabindex="-1">
+          <span class="form-success-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <h3 class="form-title">Vielen Dank – Ihre Anfrage ist bei uns eingegangen.</h3>
+          <p>Wir melden uns persönlich bei Ihnen, in der Regel innerhalb eines Werktags.</p>
+          <button type="button" class="btn btn-line" id="formAgain"><span>Weitere Anfrage senden</span></button>
+        </div>
         <h3 class="form-title">Reservierungsanfrage</h3>
         <fieldset class="field-services">
           <legend>Welche Leistungen interessieren Sie?</legend>
@@ -447,6 +453,7 @@
           <label class="field"><span class="field-label">Telefon</span><input type="tel" name="phone" autocomplete="tel" placeholder="Für einen Rückruf" /></label>
         </div>
         <label class="field"><span class="field-label">Ihre Nachricht</span><textarea name="message" rows="4" placeholder="Erzählen Sie uns kurz von Ihrem Anliegen …"></textarea></label>
+        <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <button type="submit" class="btn btn-foil btn-block" data-magnetic><span>Anfrage senden</span></button>
         <p class="form-note">Ihre Anfrage geht direkt an office@easytax.eu · Betreff „Anfrage von Webseite“. Diskret &amp; unverbindlich.</p>
       </form>

@@ -25,11 +25,16 @@
     /* ---------- Reveal on view ---------- */
     var revealSel = ".svc-intro, .svc-hero, .svc-sheet, .svc-outro, .reveal, [data-reveal]";
     if ("IntersectionObserver" in window) {
+      /* tall blocks (long sheets on phones) reveal on first contact; blocks
+         already scrolled past are revealed too — nothing can stay hidden */
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+          var rootH = (en.rootBounds && en.rootBounds.height) || window.innerHeight;
+          var tall = en.boundingClientRect.height > rootH * 0.9;
+          var passed = !en.isIntersecting && en.boundingClientRect.bottom < rootH * 0.5;
+          if ((en.isIntersecting && (en.intersectionRatio >= 0.2 || tall)) || passed) { en.target.classList.add("in"); io.unobserve(en.target); }
         });
-      }, { threshold: 0.2 });
+      }, { threshold: [0, 0.2] });
       document.querySelectorAll(revealSel).forEach(function (el) { io.observe(el); });
     } else {
       document.querySelectorAll(revealSel).forEach(function (el) { el.classList.add("in"); });
@@ -115,7 +120,7 @@
     function onScroll() {
       if (ticking) return; ticking = true;
       requestAnimationFrame(function () {
-        if (progressBar) progressBar.style.width = (computeProgress() * 100).toFixed(2) + "%";
+        if (progressBar) progressBar.style.transform = "scaleX(" + computeProgress().toFixed(4) + ")";
         var cf = chapterFloat();
         if (window.SvcScene && window.SvcScene.setProgress) window.SvcScene.setProgress(N > 1 ? cf / (N - 1) : 0);
         var idx = Math.round(cf);
@@ -129,9 +134,10 @@
     onScroll();
 
     /* ---------- Header state ---------- */
-    var header = document.getElementById("header");
+    var header = document.getElementById("header"), headerScrolled = null;
     window.addEventListener("scroll", function () {
-      if (header) header.classList.toggle("scrolled", window.scrollY > 40);
+      var sc = window.scrollY > 40;
+      if (header && sc !== headerScrolled) { headerScrolled = sc; header.classList.toggle("scrolled", sc); }
     }, { passive: true });
 
     /* ---------- Cursor light + 3D pointer parallax ---------- */

@@ -371,6 +371,15 @@ window.__I18N__ = {
   "was Sie brauchen?": { en: "what you need?", it: "su cosa le serve?" },
   "Ein Gespräch genügt, um Klarheit zu schaffen. Kostenlos, persönlich und ohne Verpflichtung.": { en: "One conversation is enough to create clarity. Free, personal and without obligation.", it: "Basta un colloquio per fare chiarezza. Gratuito, personale e senza impegno." },
 
+  /* ---------- Form feedback (JS messages) ---------- */
+  "Vielen Dank – Ihre Anfrage ist bei uns eingegangen.": { en: "Thank you — we have received your enquiry.", it: "Grazie — abbiamo ricevuto la sua richiesta." },
+  "Wir melden uns persönlich bei Ihnen, in der Regel innerhalb eines Werktags.": { en: "We will get back to you personally, usually within one working day.", it: "La ricontatteremo personalmente, di norma entro un giorno lavorativo." },
+  "Weitere Anfrage senden": { en: "Send another enquiry", it: "Invia un'altra richiesta" },
+  "Wird gesendet …": { en: "Sending …", it: "Invio in corso …" },
+  "Bitte Name und eine gültige E-Mail angeben.": { en: "Please enter your name and a valid email address.", it: "Inserisca il nome e un indirizzo e-mail valido." },
+  "Ihr E-Mail-Programm öffnet sich – bitte nur noch auf „Senden“ klicken.": { en: "Your email program is opening — just press “Send”.", it: "Si apre il suo programma di posta — basta premere «Invia»." },
+  "Wir beraten Sie gern zu:": { en: "We would be glad to advise you on:", it: "Saremo lieti di consigliarla su:" },
+
   /* ---------- Shared (legal chrome) ---------- */
   "Hauptnavigation": { en: "Main navigation", it: "Navigazione principale" },
   "Zurück zur Startseite": { en: "Back to home", it: "Torna alla home" },
