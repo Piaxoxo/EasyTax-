@@ -24,7 +24,11 @@
 
   var RECIPIENT     = "office@easytax.eu";
   var SUBJECT       = "Anfrage von Webseite";
-  var WEB3FORMS_KEY = "";
+  /* Automatic delivery: FormSubmit (formsubmit.co) forwards the enquiry to
+     RECIPIENT — no account, no key. Set to "" to fall back to the prepared
+     e-mail only. (One-time: the first enquiry triggers an activation mail
+     to RECIPIENT which must be confirmed.) */
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/" + RECIPIENT;
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fine   = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -283,10 +287,10 @@
       var hp = form.querySelector('[name="botcheck"]');
       if (hp && hp.checked) { showSent(); return; }
 
-      /* Automatic delivery (no mail program needed) once a form key is set.
-         Any failure — offline, timeout, service down — falls back to the
+      /* Automatic delivery (no mail program needed). Any failure — offline,
+         timeout, service down, not yet activated — falls back to the
          prepared e-mail, so an enquiry is never lost. */
-      if (WEB3FORMS_KEY && window.fetch) {
+      if (FORM_ENDPOINT && window.fetch) {
         if (sending) return; sending = true;
         var btn = form.querySelector('button[type="submit"]'), label = btn.querySelector("span"), node = label && label.firstChild;
         var orig = node ? node.nodeValue : "";
@@ -294,19 +298,19 @@
         btn.disabled = true;
         var ctrl = window.AbortController ? new AbortController() : null;
         var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 12000);
-        fetch("https://api.web3forms.com/submit", {
+        fetch(FORM_ENDPOINT, {
           method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
           signal: ctrl ? ctrl.signal : undefined,
           body: JSON.stringify({
-            access_key: WEB3FORMS_KEY, subject: SUBJECT + " – " + data.name, from_name: "EasyTax Webseite",
-            name: data.name, email: data.email, replyto: data.email,
+            _subject: SUBJECT + " – " + data.name, _template: "table", _captcha: "false", _honey: "",
+            Name: data.name, "E-Mail": data.email,
             Unternehmen: data.company || "-", Telefon: data.phone || "-",
             Leistungen: data.services.length ? data.services.join(", ") : "-",
-            message: data.message || "(keine Nachricht)", botcheck: ""
+            Nachricht: data.message || "(keine Nachricht)"
           })
         })
           .then(function (r) { return r.json(); })
-          .then(function (res) { if (res && res.success) { form.reset(); showSent(); } else fallbackMailto(data); })
+          .then(function (res) { if (res && (res.success === true || res.success === "true")) { form.reset(); showSent(); } else fallbackMailto(data); })
           .catch(function () { fallbackMailto(data); })
           .then(function () { clearTimeout(timer); sending = false; btn.disabled = false; if (node) node.nodeValue = orig; });
         return;
