@@ -69,7 +69,7 @@
         var svc = btn.getAttribute("data-mailto");
         var toast = document.getElementById("toast");
         if (toast) { toast.textContent = "E-Mail für „" + svc + "“ wird geöffnet …"; toast.classList.add("show"); setTimeout(function () { toast.classList.remove("show"); }, 3200); }
-        window.location.href = mailtoFor(svc);
+        (window.etOpen || function (u) { window.location.href = u; })(mailtoFor(svc));
       });
     });
 

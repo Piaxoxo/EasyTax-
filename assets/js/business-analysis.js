@@ -334,7 +334,7 @@ window.EasyTaxAnalysis = (function () {
     var name = (view.querySelector("#eta-name") || {}).value || "";
     var extra = (view.querySelector("#eta-extra") || {}).value || "";
     var mail = C.buildEmail(state.answers, D.getLabels(), name, extra, D.mainTopic(state.answers));
-    window.location.href = mail.href;
+    (window.etOpen || function (u) { window.location.href = u; })(mail.href);
     state.mode = "thanks"; render();
   }
 

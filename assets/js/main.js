@@ -4,6 +4,26 @@
    cursor light · magnetic · 3D tilt · form
    One rAF scroll loop. Guards for reduced-motion / touch.
    ============================================================ */
+/* ---- Call / mail links when the site is embedded (e.g. in a WordPress
+   iframe): phones block tel:/mailto: navigations that start INSIDE a frame.
+   They are handed to the top window instead, so the dialer / mail app opens.
+   window.etOpen(url) is the same for links opened from JavaScript. ---- */
+window.etOpen = function (url) {
+  try { if (window.top !== window.self) { window.top.location.href = url; return; } } catch (e1) {
+    try { if (window.open(url, "_top")) return; } catch (e2) {}
+  }
+  window.location.href = url;
+};
+document.addEventListener("click", function (e) {
+  try {
+    if (window.top === window.self || e.defaultPrevented) return;
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    var h = a.getAttribute("href") || "";
+    if (/^(tel|mailto):/i.test(h)) { e.preventDefault(); window.etOpen(h); }
+  } catch (e3) {}
+}, true);
+
 (function () {
   "use strict";
 
@@ -266,7 +286,7 @@
     return l.join("\n");
   }
   function fallbackMailto(data) {
-    window.location.href = "mailto:" + RECIPIENT + "?subject=" + encodeURIComponent(SUBJECT) + "&body=" + encodeURIComponent(buildBody(data));
+    window.etOpen("mailto:" + RECIPIENT + "?subject=" + encodeURIComponent(SUBJECT) + "&body=" + encodeURIComponent(buildBody(data)));
     toast(tt("Ihr E-Mail-Programm öffnet sich – bitte nur noch auf „Senden“ klicken."));
   }
   var form = document.getElementById("requestForm");
